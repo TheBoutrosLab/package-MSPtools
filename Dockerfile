@@ -42,5 +42,5 @@ RUN groupadd -g 500001 bldocker && \
     useradd -r -u 500001 -g bldocker bldocker
 USER bldocker
 
-LABEL maintainer="Chenghao Zhu <czhu@sbpdiscovery.org>" \
+LABEL  maintainer="Chenghao Zhu <czhu@sbpdiscovery.org>"
 LABEL org.opencontainers.image.source="https://github.com/TheBoutrosLab/package-MSPtools"

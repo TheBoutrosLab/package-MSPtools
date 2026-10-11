@@ -79,7 +79,7 @@ def main(args:argparse.Namespace):
         cmap2.push_back(new_cf)
     cmap2.ensureUniqueId()
 
-    process_actions = { DataProcessing.ProcessingAction.NORMALIZATION }
+    process_actions = { DataProcessing.ProcessingAction.FILTERING }
     common.add_data_processing(cmap2, args, PROG_NAME, process_actions)
 
     ConsensusXMLFile().store(args.output_path, cmap2)

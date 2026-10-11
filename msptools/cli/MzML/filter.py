@@ -94,7 +94,7 @@ def main(args:argparse.Namespace):
     mzml_filter.consensus_file = args.consensus_file
     mzml_filter.rt_tolerance = args.rt_tolerance
     mzml_filter.mz_tolerance = args.mz_tolerance
-    mzml_filter.mz_tolerance_unit = args.mz_tolerance_unit
+    mzml_filter.mz_tolerance_unit = args.mz_tolerance_unit == 'ppm'
     mzml_filter.consensus_check_id = args.consensus_check_id == 'true'
     mzml_filter.use_rt_mz = args.use_rt_mz
 

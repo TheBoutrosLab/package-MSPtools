@@ -183,7 +183,10 @@ class MADNormalizer():
                     intensities.append(0)
             ms2_intensity_sum = sum(intensities)
             ms1_intensity = cf.getMetaValue('precursor_intensity')
-            ref_intensities.append(ms1_intensity * ms2_intensity_ref / ms2_intensity_sum)
+            if ms2_intensity_sum == 0:
+                ref_intensities.append(0)
+            else:
+                ref_intensities.append(ms1_intensity * ms2_intensity_ref / ms2_intensity_sum)
             if ms2_intensity_ref == 0:
                 cf_ratios = [0 for _ in cf.getFeatureList()]
             else:

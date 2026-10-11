@@ -12,7 +12,7 @@ class TestProteinQuantCSVFixZeroPlex(IntegrationTestCase):
         args.input_path = None
         args.output_path = str(self.work_dir/'output.csv')
         args.consensusXML = None
-        args.protein_graoup = None
+        args.protein_groups = None
         args.type = 'protein'
         args.separator = '\t'
         args.quoting = 'double'

@@ -138,7 +138,8 @@ def main(args:argparse.Namespace):
         raise ValueError('Either --quant-csv or --idxml-csv should be provided.')
 
     common.validate_file_format(args.database_csv, INPUT_FILE_FORMATS, check_exist=True)
-    common.validate_file_format(args.individual_fasta_csv, INPUT_FILE_FORMATS, check_exist=True)
+    if not args.label_free:
+        common.validate_file_format(args.individual_fasta_csv, INPUT_FILE_FORMATS, check_exist=True)
     common.validate_file_format(args.gvf_csv, INPUT_FILE_FORMATS, check_exist=True)
 
     annotator = VariantPeptideAnnotator()

@@ -26,7 +26,7 @@ classifiers = [
 dependencies = [
     "biopython>=1.80,<=1.83",
     "numpy>=1.26,<2",
-    "pyopenms==3.1.0",
+    "pyopenms==3.2.0",
     "mopepgen==1.4.2",
 ]
 
@@ -100,6 +100,7 @@ reportUnusedCallResult = "information"
 reportMissingTypeStubs = "information"
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = [
     "test"
 ]

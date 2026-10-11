@@ -53,8 +53,9 @@ def add_subparsers(subparsers:argparse._SubParsersAction):
         '--experiment-type',
         type=str,
         choices=['LFQ', 'TMT'],
-        help="Experiment type. Valid options: ['LFQ', 'TMT]",
-        metavar='<choice>'
+        help="Experiment type. Valid options: ['LFQ', 'TMT']",
+        metavar='<choice>',
+        required=True
     )
     parser.add_argument(
         '--separator',

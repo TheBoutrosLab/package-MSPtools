@@ -8,14 +8,20 @@ OPENMS_PROTEIN_QUANT_PREFIX = {
     'header_map': '# Files/samples associated with abundance values below',
     'parameters': '# Parameters (relevant only):'
 }
+FILE_ORIGIN_PREFIXES = (
+    OPENMS_PROTEIN_QUANT_PREFIX['file_origin'],
+    '# Protein abundances computed from file'
+)
 
 class ProteinQuantCSVMetadata:
     """ Metadata for ProteinQuantCSV """
     def __init__(self, file_origin:str=None,
         header_map:Dict[int,Tuple[str,str]]=None,
-        parameters:Dict[str,Union[str,int]]=None):
+        parameters:Dict[str,Union[str,int]]=None,
+        file_origin_prefix:str=OPENMS_PROTEIN_QUANT_PREFIX['file_origin']):
         """ constructor """
         self.file_origin = file_origin
+        self.file_origin_prefix = file_origin_prefix
         self.header_map = header_map or {}
         self.parameters = parameters or {}
 
@@ -24,7 +30,7 @@ class ProteinQuantCSVMetadata:
         prefix = OPENMS_PROTEIN_QUANT_PREFIX
         parameters = ', '.join([f'{k}={v}' for k,v in self.parameters.items()])
         lines = [
-            f"{prefix['file_origin']} {self.file_origin}",
+            f"{self.file_origin_prefix} {self.file_origin}",
             f"{prefix['parameters']} {parameters}"
         ]
         if self.header_map:
@@ -44,14 +50,16 @@ class ProteinQuantCSVMetadata:
         handle.seek(0)
         prefix = OPENMS_PROTEIN_QUANT_PREFIX
         file_origin = None
+        file_origin_prefix = prefix['file_origin']
         header_map = {}
         parameters = {}
         for line in handle:
             if not line.startswith('#'):
                 handle.seek(0)
                 break
-            if line.startswith(prefix['file_origin']):
-                file_origin = line.rstrip().replace(prefix['file_origin'], '')\
+            if line.startswith(FILE_ORIGIN_PREFIXES):
+                file_origin_prefix = next(p for p in FILE_ORIGIN_PREFIXES if line.startswith(p))
+                file_origin = line.rstrip().removeprefix(file_origin_prefix)\
                     .strip().strip('"').strip("'")
             elif line.startswith(prefix['header_map']):
                 for field in line.rstrip().split(':', 1)[-1].strip().split(', '):
@@ -69,7 +77,7 @@ class ProteinQuantCSVMetadata:
                 for field in fields.split(','):
                     key, val = field.split('=')
                     parameters[key] = val
-        return cls(file_origin, header_map, parameters)
+        return cls(file_origin, header_map, parameters, file_origin_prefix)
 
     def get_plex_2_column(self, offset:int=0) -> Dict[str, List[int]]:
         """ get plex to column map """

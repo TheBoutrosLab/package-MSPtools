@@ -28,7 +28,7 @@ def main():
     # allowing values to start with -, such as -100,3
     # https://stackoverflow.com/a/21446783/11081630
     for i, arg in enumerate(sys.argv):
-        if arg[0] == '-' and arg[1].isdigit():
+        if len(arg) > 1 and arg[0] == '-' and arg[1].isdigit():
             sys.argv[i] = ' ' + arg
 
     args = parser.parse_args()

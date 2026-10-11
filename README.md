@@ -4,7 +4,7 @@ MSPtools is a command line toolkit for processing and analyzing mass spectrometr
 
 ## Install
 
-MSPtools currently targets Python 3.10 with pyOpenMS 3.1.0. Install it with:
+MSPtools targets Python 3.10 or 3.11 with pyOpenMS 3.2.0. Install it with:
 
 ```bash
 python -m pip install .

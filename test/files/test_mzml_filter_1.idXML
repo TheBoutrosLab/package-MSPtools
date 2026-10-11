@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://www.openms.de/xml-stylesheet/IdXML.xsl" ?>
+<IdXML version="1.5" xsi:noNamespaceSchemaLocation="https://www.openms.de/xml-schema/IdXML_1_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SearchParameters id="SP_0" db="" db_version="" taxonomy="" mass_type="monoisotopic" charges="" enzyme="unknown_enzyme" missed_cleavages="0" precursor_peak_tolerance="0" precursor_peak_tolerance_ppm="false" peak_mass_tolerance="0" peak_mass_tolerance_ppm="false" >
+	</SearchParameters>
+	<IdentificationRun date="0000-00-00T00:00:00" search_engine="" search_engine_version="" search_parameters_ref="SP_0" >
+		<ProteinIdentification score_type="" higher_score_better="true" significance_threshold="0" >
+			<ProteinHit id="PH_0" accession="rev_ENSP00000409667.2|ENST00000433931.7|ENSG00000159082.18|OTTHUMG00000064926.17|-|SYNJ1-206|SYNJ1|1612" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+			</ProteinHit>
+			<ProteinHit id="PH_1" accession="rev_ENSP00000487560.1|ENST00000630077.3|ENSG00000159082.18|OTTHUMG00000064926.17|OTTHUMT00000484401.2|SYNJ1-211|SYNJ1|1526" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+			</ProteinHit>
+			<ProteinHit id="PH_2" accession="rev_ENSP00000501426.1|ENST00000674308.1|ENSG00000159082.18|OTTHUMG00000064926.17|OTTHUMT00000139428.5|SYNJ1-213|SYNJ1|1573" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+			</ProteinHit>
+			<ProteinHit id="PH_3" accession="ENSP00000270142.7|ENST00000270142.11|ENSG00000142168.15|OTTHUMG00000084878.2|OTTHUMT00000192585.2|SOD1-201|SOD1|154" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_4" accession="ENSP00000374645.4|ENST00000389995.4|ENSG00000142168.15|OTTHUMG00000084878.2|OTTHUMT00000192586.1|SOD1-202|SOD1|135" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_5" accession="rev_ENSP00000352572.5|ENST00000359568.10|ENSG00000160299.17|OTTHUMG00000090665.2|OTTHUMT00000207336.2|PCNT-201|PCNT|3336" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+			</ProteinHit>
+			<ProteinHit id="PH_6" accession="sp|SODC_HUMAN|" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+		</ProteinIdentification>
+		<PeptideIdentification score_type="expect" higher_score_better="false" significance_threshold="0.0" MZ="531.77447503190001" RT="829.252799999999979" spectrum_reference="spectrum=3712" >
+			<PeptideHit score="1.513561" sequence="ELRC(Carbamidomethyl)ELSR" charge="2" aa_before="R" aa_after="E" start="2855" end="2862" protein_refs="PH_5" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="hyperscore" value="8.779999999999999"/>
+				<UserParam type="float" name="nextscore" value="0.0"/>
+				<UserParam type="float" name="MS:1001330" value="1.513561"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="0"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="expect" higher_score_better="false" significance_threshold="0.0" MZ="418.554125031899957" RT="853.06686000000002" spectrum_reference="spectrum=3845" >
+			<PeptideHit score="0.01873915" sequence="HGGPK(TMT6plex)DEER" charge="3" aa_before="K K K" aa_after="H H H" start="52 71 70" end="60 79 78" protein_refs="PH_4 PH_3 PH_6" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="hyperscore" value="8.409000000000001"/>
+				<UserParam type="float" name="nextscore" value="0.0"/>
+				<UserParam type="float" name="MS:1001330" value="0.01873915"/>
+				<UserParam type="string" name="protein_references" value="non-unique"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="0"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="expect" higher_score_better="false" significance_threshold="0.0" MZ="387.546958365233365" RT="902.280899999999974" spectrum_reference="spectrum=4167" >
+			<PeptideHit score="9.300363000000001e-03" sequence=".(TMT6plex)TFPN(Deamidated)GPAAR" charge="3" aa_before="R R R" aa_after="A A A" start="1448 1362 1409" end="1456 1370 1417" protein_refs="PH_0 PH_1 PH_2" >
+				<UserParam type="string" name="target_decoy" value="decoy"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="hyperscore" value="9.626"/>
+				<UserParam type="float" name="nextscore" value="0.0"/>
+				<UserParam type="float" name="MS:1001330" value="9.300363000000001e-03"/>
+				<UserParam type="string" name="protein_references" value="non-unique"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="0"/>
+		</PeptideIdentification>
+	</IdentificationRun>
+</IdXML>

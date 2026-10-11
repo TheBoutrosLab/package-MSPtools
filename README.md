@@ -1,23 +1,33 @@
-# Package Title
+# MSPtools
 
-[![GitHub release](https://img.shields.io/github/v/release/TheBoutrosLab/template-python-package)](https://github.com/TheBoutrosLab/template-python-package/actions/workflows/prepare-release.yaml)
+MSPtools is a command line toolkit for processing and analyzing mass spectrometry proteomics data. It includes utilities for mzML, idXML, featureXML, consensusXML, protein quantification CSV files, and variant peptide annotation.
 
-Template Repository for the Boutros Lab Python packages. Describe a simple overview of use/purpose here.
+## Install
 
-## Description
+MSPtools targets Python 3.10 or 3.11 with pyOpenMS 3.2.0. Install it with:
 
-An in-depth paragraph about your project and overview of use.
+```bash
+python -m pip install .
+```
+
+The package installs `pyopenms` and `mopepgen` from PyPI.
+
+## Use
+
+```bash
+msptools --help
+msptools --version
+```
+
+Run `msptools --help` to see the available commands and their options.
+
+## Develop
+
+```bash
+python -m pip install -e ".[dev-dependencies]"
+python -m pytest test
+```
 
 ## License
 
-Author: Name1, Name2
-
-[This project] is licensed under the GNU General Public License version 2. See the file LICENSE.md for the terms of the GNU GPL license.
-
-<one line to give the project/program's name and a brief idea of what it does.>
-
-Copyright (C) 2026 Sanford Burnham Prebys Medical Discovery Institute ("Boutros Lab")
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+Copyright (C) 2026 Sanford Burnham Prebys Medical Discovery Institute (Boutros Lab). Licensed under GPL-2.0-or-later; see [LICENSE](LICENSE).

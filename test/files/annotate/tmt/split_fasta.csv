@@ -1,0 +1,7 @@
+sample_name,order,database_identifier,path
+Prot_01,1,Coding,test/files/annotate/tmt/split_fasta/Prot_01_Coding.fasta
+Prot_01,2,Noncoding,test/files/annotate/tmt/split_fasta/Prot_01_Noncoding.fasta
+Prot_01,3,Noncoding-additional,test/files/annotate/tmt/split_fasta/Prot_01_Noncoding-additional.fasta
+Prot_02,1,Coding,test/files/annotate/tmt/split_fasta/Prot_02_Coding.fasta
+Prot_02,2,Noncoding,test/files/annotate/tmt/split_fasta/Prot_02_Noncoding.fasta
+Prot_02,3,Noncoding-additional,test/files/annotate/tmt/split_fasta/Prot_02_Noncoding-additional.fasta

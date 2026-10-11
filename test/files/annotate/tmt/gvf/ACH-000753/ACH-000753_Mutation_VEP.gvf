@@ -1,0 +1,15 @@
+##fileformat=VCFv4.2
+##mopepgen_version=0.11.3
+##parser=parseVEP
+##reference_index=/hot/project/method/AlgorithmDevelopment/ALGO-000074-moPepGen/ref/GRCh38-EBI-GENCODE34/index
+##genome_fasta=
+##annotation_gtf=
+##source=Mutation
+##CHROM=<Description="Gene ID">
+##INFO=<ID=TRANSCRIPT_ID,Number=1,Type=String,Description="Transcript ID">
+##INFO=<ID=GENE_SYMBOL,Number=1,Type=String,Description="Gene Symbol">
+##INFO=<ID=GENOMIC_POSITION,Number=1,Type=String,Description="Genomic Position">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+ENSG00000254709.8	7865	SNV-7865-C-T	C	T	.	.	TRANSCRIPT_ID=ENST00000532223.2;GENOMIC_POSITION=22:22895644;GENE_SYMBOL=IGLL5
+ENSG00000254709.8	7865	SNV-7865-C-T	C	T	.	.	TRANSCRIPT_ID=ENST00000526893.6;GENOMIC_POSITION=22:22895644;GENE_SYMBOL=IGLL5
+ENSG00000211675.2	270	SNV-270-C-T	C	T	.	.	TRANSCRIPT_ID=ENST00000390321.2;GENOMIC_POSITION=22:22895644;GENE_SYMBOL=IGLC1

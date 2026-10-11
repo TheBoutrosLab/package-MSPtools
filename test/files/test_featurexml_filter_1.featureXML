@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<featureMap version="1.9" id="fm_11883861889418970401" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/OpenMS/OpenMS/develop/share/OpenMS/SCHEMAS/FeatureXML_1_9.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<UserParam type="stringList" name="spectra_data" value="[Liver_reindex_1.mzML]"/>
+	<IdentificationRun id="PI_0" date="2022-11-28T00:52:30" search_engine="Percolator" search_engine_version="3.05">
+		<SearchParameters db="Mus_musculus.GRCm38.pep.chr19_decoy.fa" db_version="" taxonomy="" mass_type="monoisotopic" charges="1:5" enzyme="trypsin" missed_cleavages="2" precursor_peak_tolerance="20" precursor_peak_tolerance_ppm="true" peak_mass_tolerance="0.01" peak_mass_tolerance_ppm="false" >
+			<FixedModification name="Carbamidomethyl (C)" />
+			<VariableModification name="Oxidation (M)" />
+			<UserParam type="string" name="CometAdapter:1:in" value="Liver_reindex_1.mzML"/>
+			<UserParam type="string" name="CometAdapter:1:out" value="Liver_reindex_1_Comet.idXML"/>
+			<UserParam type="string" name="CometAdapter:1:database" value="Mus_musculus.GRCm38.pep.chr19_decoy.fa"/>
+			<UserParam type="string" name="CometAdapter:1:comet_executable" value="comet.exe"/>
+			<UserParam type="string" name="CometAdapter:1:pin_out" value=""/>
+			<UserParam type="string" name="CometAdapter:1:default_params_file" value=""/>
+			<UserParam type="float" name="CometAdapter:1:precursor_mass_tolerance" value="20.0"/>
+			<UserParam type="string" name="CometAdapter:1:precursor_error_units" value="ppm"/>
+			<UserParam type="string" name="CometAdapter:1:isotope_error" value="0/1/2"/>
+			<UserParam type="float" name="CometAdapter:1:fragment_mass_tolerance" value="0.01"/>
+			<UserParam type="string" name="CometAdapter:1:fragment_error_units" value="Da"/>
+			<UserParam type="float" name="CometAdapter:1:fragment_bin_offset" value="0.0"/>
+			<UserParam type="string" name="CometAdapter:1:instrument" value="high_res"/>
+			<UserParam type="string" name="CometAdapter:1:use_A_ions" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:use_B_ions" value="true"/>
+			<UserParam type="string" name="CometAdapter:1:use_C_ions" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:use_X_ions" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:use_Y_ions" value="true"/>
+			<UserParam type="string" name="CometAdapter:1:use_Z_ions" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:use_NL_ions" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:enzyme" value="Trypsin"/>
+			<UserParam type="string" name="CometAdapter:1:second_enzyme" value=""/>
+			<UserParam type="string" name="CometAdapter:1:num_enzyme_termini" value="fully"/>
+			<UserParam type="int" name="CometAdapter:1:missed_cleavages" value="2"/>
+			<UserParam type="int" name="CometAdapter:1:min_peptide_length" value="7"/>
+			<UserParam type="int" name="CometAdapter:1:max_peptide_length" value="35"/>
+			<UserParam type="int" name="CometAdapter:1:num_hits" value="1"/>
+			<UserParam type="string" name="CometAdapter:1:precursor_charge" value="1:5"/>
+			<UserParam type="string" name="CometAdapter:1:override_charge" value="keep known search unknown"/>
+			<UserParam type="int" name="CometAdapter:1:ms_level" value="2"/>
+			<UserParam type="string" name="CometAdapter:1:activation_method" value="ALL"/>
+			<UserParam type="string" name="CometAdapter:1:digest_mass_range" value="600:5000"/>
+			<UserParam type="int" name="CometAdapter:1:max_fragment_charge" value="3"/>
+			<UserParam type="int" name="CometAdapter:1:max_precursor_charge" value="5"/>
+			<UserParam type="string" name="CometAdapter:1:clip_nterm_methionine" value="true"/>
+			<UserParam type="int" name="CometAdapter:1:spectrum_batch_size" value="20000"/>
+			<UserParam type="floatList" name="CometAdapter:1:mass_offsets" value="[0.0]"/>
+			<UserParam type="int" name="CometAdapter:1:minimum_peaks" value="15"/>
+			<UserParam type="float" name="CometAdapter:1:minimum_intensity" value="0.0"/>
+			<UserParam type="string" name="CometAdapter:1:remove_precursor_peak" value="no"/>
+			<UserParam type="float" name="CometAdapter:1:remove_precursor_tolerance" value="1.5"/>
+			<UserParam type="string" name="CometAdapter:1:clear_mz_range" value="0:0"/>
+			<UserParam type="stringList" name="CometAdapter:1:fixed_modifications" value="[Carbamidomethyl (C)]"/>
+			<UserParam type="stringList" name="CometAdapter:1:variable_modifications" value="[Oxidation (M)]"/>
+			<UserParam type="intList" name="CometAdapter:1:binary_modifications" value="[]"/>
+			<UserParam type="int" name="CometAdapter:1:max_variable_mods_in_peptide" value="3"/>
+			<UserParam type="string" name="CometAdapter:1:require_variable_mod" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:reindex" value="true"/>
+			<UserParam type="string" name="CometAdapter:1:log" value=""/>
+			<UserParam type="int" name="CometAdapter:1:debug" value="0"/>
+			<UserParam type="int" name="CometAdapter:1:threads" value="8"/>
+			<UserParam type="string" name="CometAdapter:1:no_progress" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:force" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:test" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:decoy_string" value="DECOY_"/>
+			<UserParam type="string" name="CometAdapter:1:decoy_string_position" value="prefix"/>
+			<UserParam type="string" name="CometAdapter:1:missing_decoy_action" value="warn"/>
+			<UserParam type="string" name="CometAdapter:1:write_protein_sequence" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:write_protein_description" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:keep_unreferenced_proteins" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:unmatched_action" value="remove"/>
+			<UserParam type="int" name="CometAdapter:1:aaa_max" value="3"/>
+			<UserParam type="int" name="CometAdapter:1:mismatches_max" value="0"/>
+			<UserParam type="string" name="CometAdapter:1:IL_equivalent" value="false"/>
+			<UserParam type="string" name="CometAdapter:1:allow_nterm_protein_cleavage" value="true"/>
+			<UserParam type="string" name="CometAdapter:1:name" value="auto"/>
+			<UserParam type="string" name="CometAdapter:1:specificity" value="auto"/>
+			<UserParam type="string" name="EnzymeTermSpecificity" value="full"/>
+			<UserParam type="string" name="SE:Comet" value="# comet_version 2019.01 rev. 5"/>
+			<UserParam type="string" name="Comet:db" value="Mus_musculus.GRCm38.pep.chr19_decoy.fa"/>
+			<UserParam type="string" name="Comet:db_version" value=""/>
+			<UserParam type="string" name="Comet:taxonomy" value=""/>
+			<UserParam type="string" name="Comet:charges" value="1:5"/>
+			<UserParam type="string" name="Comet:fixed_modifications" value="Carbamidomethyl (C)"/>
+			<UserParam type="string" name="Comet:variable_modifications" value="Oxidation (M)"/>
+			<UserParam type="int" name="Comet:missed_cleavages" value="2"/>
+			<UserParam type="float" name="Comet:fragment_mass_tolerance" value="0.01"/>
+			<UserParam type="string" name="Comet:fragment_mass_tolerance_unit" value="Da"/>
+			<UserParam type="float" name="Comet:precursor_mass_tolerance" value="20.0"/>
+			<UserParam type="string" name="Comet:precursor_mass_tolerance_unit" value="ppm"/>
+			<UserParam type="string" name="Comet:digestion_enzyme" value="Trypsin"/>
+			<UserParam type="int" name="Comet:enzyme_term_specificity" value="2"/>
+			<UserParam type="string" name="feature_extractor" value="TOPP_PSMFeatureExtractor"/>
+			<UserParam type="string" name="extra_features" value="isotope_error,COMET:deltCn,COMET:deltLCn,COMET:lnExpect,MS:1002252,MS:1002255,COMET:lnNumSP,COMET:lnRankSP,COMET:IonFrac"/>
+			<UserParam type="int" name="Percolator:peptide_level_fdrs" value="0"/>
+			<UserParam type="int" name="Percolator:protein_level_fdrs" value="0"/>
+			<UserParam type="int" name="Percolator:generic_feature_set" value="0"/>
+			<UserParam type="float" name="Percolator:testFDR" value="0.01"/>
+			<UserParam type="float" name="Percolator:trainFDR" value="0.01"/>
+			<UserParam type="int" name="Percolator:maxiter" value="10"/>
+			<UserParam type="int" name="Percolator:subset_max_train" value="0"/>
+			<UserParam type="int" name="Percolator:quick_validation" value="0"/>
+			<UserParam type="int" name="Percolator:static" value="0"/>
+			<UserParam type="string" name="Percolator:weights" value=""/>
+			<UserParam type="string" name="Percolator:init_weights" value=""/>
+			<UserParam type="string" name="Percolator:default_direction" value=""/>
+			<UserParam type="float" name="Percolator:cpos" value="0.0"/>
+			<UserParam type="float" name="Percolator:cneg" value="0.0"/>
+			<UserParam type="int" name="Percolator:unitnorm" value="0"/>
+			<UserParam type="int" name="Percolator:override" value="0"/>
+			<UserParam type="int" name="Percolator:seed" value="1"/>
+			<UserParam type="int" name="Percolator:doc" value="0"/>
+			<UserParam type="int" name="Percolator:klammer" value="0"/>
+			<UserParam type="string" name="Percolator:fasta" value=""/>
+			<UserParam type="string" name="Percolator:decoy_pattern" value="random"/>
+			<UserParam type="string" name="Percolator:post_processing_tdc" value="true"/>
+			<UserParam type="int" name="Percolator:train_best_positive" value="0"/>
+		</SearchParameters>
+		<ProteinIdentification score_type="" higher_score_better="true" significance_threshold="0">
+			<ProteinHit id="PH_0" accession="ENSMUSP00000158393.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_1" accession="ENSMUSP00000158143.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_2" accession="ENSMUSP00000157809.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_3" accession="ENSMUSP00000157542.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_4" accession="ENSMUSP00000138360.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_5" accession="ENSMUSP00000138330.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_6" accession="ENSMUSP00000130604.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_7" accession="ENSMUSP00000127498.1" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_8" accession="ENSMUSP00000107512.2" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_9" accession="ENSMUSP00000072859.5" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_10" accession="ENSMUSP00000048218.8" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_11" accession="ENSMUSP00000025891.8" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_12" accession="ENSMUSP00000025680.4" score="0" sequence="">
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<UserParam type="stringList" name="spectra_data" value="[Liver_reindex_1.mzML]"/>
+			<UserParam type="string" name="percolator" value="PercolatorAdapter"/>
+		</ProteinIdentification>
+	</IdentificationRun>
+	<featureList count="10">
+		<feature id="f_3748543977095242004">
+			<position dim="0">2284.357803984032216</position>
+			<position dim="1">691.352532615045448</position>
+			<intensity>1.304027e11</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.853679</overallquality>
+			<charge>1</charge>
+			<convexhull nr="0">
+				<pt x="2266.198859999999968" y="691.35174560546875" />
+				<pt x="2323.996680000000197" y="691.35174560546875" />
+				<pt x="2323.996680000000197" y="691.3538818359375" />
+				<pt x="2266.198859999999968" y="691.3538818359375" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2266.198859999999968" y="692.3529052734375" />
+				<pt x="2323.996680000000197" y="692.3529052734375" />
+				<pt x="2323.996680000000197" y="692.35601806640625" />
+				<pt x="2266.198859999999968" y="692.35601806640625" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2266.198859999999968" y="693.35504150390625" />
+				<pt x="2323.996680000000197" y="693.35504150390625" />
+				<pt x="2323.996680000000197" y="693.35845947265625" />
+				<pt x="2266.198859999999968" y="693.35845947265625" />
+			</convexhull>
+			<UserParam type="int" name="label" value="0"/>
+			<UserParam type="float" name="score_fit" value="0.76572699973138"/>
+			<UserParam type="float" name="score_correlation" value="0.951733002720756"/>
+			<UserParam type="float" name="FWHM" value="37.3583984375"/>
+			<UserParam type="int" name="spectrum_index" value="4559"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=14516"/>
+		</feature>
+		<feature id="f_17631122912268709053">
+			<position dim="0">1744.301628955477781</position>
+			<position dim="1">741.32457581555957</position>
+			<intensity>9.070416e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.761381</overallquality>
+			<charge>1</charge>
+			<convexhull nr="0">
+				<pt x="1724.416259999999966" y="741.323974609375" />
+				<pt x="1771.864800000000059" y="741.323974609375" />
+				<pt x="1771.864800000000059" y="741.32879638671875" />
+				<pt x="1724.416259999999966" y="741.32879638671875" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="1725.771960000000036" y="742.3250732421875" />
+				<pt x="1771.864800000000059" y="742.3250732421875" />
+				<pt x="1771.864800000000059" y="742.33062744140625" />
+				<pt x="1725.771960000000036" y="742.33062744140625" />
+			</convexhull>
+			<UserParam type="int" name="label" value="3042"/>
+			<UserParam type="float" name="score_fit" value="0.619209368776173"/>
+			<UserParam type="float" name="score_correlation" value="0.93619585345304"/>
+			<UserParam type="float" name="FWHM" value="25.9808349609375"/>
+			<UserParam type="int" name="spectrum_index" value="2801"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=8017"/>
+		</feature>
+		<feature id="f_12529098277884525605">
+			<position dim="0">1949.276041212114933</position>
+			<position dim="1">621.32897601863499</position>
+			<intensity>6.311029e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.818891</overallquality>
+			<charge>2</charge>
+			<convexhull nr="0">
+				<pt x="1927.447319999999991" y="621.32843017578125" />
+				<pt x="1974.531840000000102" y="621.32843017578125" />
+				<pt x="1974.531840000000102" y="621.33001708984375" />
+				<pt x="1927.447319999999991" y="621.33001708984375" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="1927.447319999999991" y="621.827880859375" />
+				<pt x="1974.531840000000102" y="621.827880859375" />
+				<pt x="1974.531840000000102" y="621.832763671875" />
+				<pt x="1927.447319999999991" y="621.832763671875" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="1927.654080000000022" y="622.328369140625" />
+				<pt x="1974.531840000000102" y="622.328369140625" />
+				<pt x="1974.531840000000102" y="622.33270263671875" />
+				<pt x="1927.654080000000022" y="622.33270263671875" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="1931.677320000000009" y="622.8297119140625" />
+				<pt x="1974.531840000000102" y="622.8297119140625" />
+				<pt x="1974.531840000000102" y="622.8345947265625" />
+				<pt x="1931.677320000000009" y="622.8345947265625" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="1933.464420000000018" y="623.33062744140625" />
+				<pt x="1974.531840000000102" y="623.33062744140625" />
+				<pt x="1974.531840000000102" y="623.33489990234375" />
+				<pt x="1933.464420000000018" y="623.33489990234375" />
+			</convexhull>
+			<convexhull nr="5">
+				<pt x="1939.886520000000019" y="623.83050537109375" />
+				<pt x="1974.531840000000102" y="623.83050537109375" />
+				<pt x="1974.531840000000102" y="623.83648681640625" />
+				<pt x="1939.886520000000019" y="623.83648681640625" />
+			</convexhull>
+			<UserParam type="int" name="label" value="5397"/>
+			<UserParam type="float" name="score_fit" value="0.69012786368093"/>
+			<UserParam type="float" name="score_correlation" value="0.971677404418621"/>
+			<UserParam type="float" name="FWHM" value="24.118589401245117"/>
+			<UserParam type="int" name="spectrum_index" value="3471"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=10487"/>
+		</feature>
+		<feature id="f_13519205858687890567">
+			<position dim="0">2697.412971280052716</position>
+			<position dim="1">617.361895385329717</position>
+			<intensity>4.193239e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.703154</overallquality>
+			<charge>1</charge>
+			<convexhull nr="0">
+				<pt x="2676.568499999999858" y="617.3614501953125" />
+				<pt x="2718.124679999999898" y="617.3614501953125" />
+				<pt x="2718.124679999999898" y="617.363525390625" />
+				<pt x="2676.568499999999858" y="617.363525390625" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2676.568499999999858" y="618.36236572265625" />
+				<pt x="2718.124679999999898" y="618.36236572265625" />
+				<pt x="2718.124679999999898" y="618.366455078125" />
+				<pt x="2676.568499999999858" y="618.366455078125" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2682.259079999999813" y="619.3651123046875" />
+				<pt x="2718.124679999999898" y="619.3651123046875" />
+				<pt x="2718.124679999999898" y="619.36907958984375" />
+				<pt x="2682.259079999999813" y="619.36907958984375" />
+			</convexhull>
+			<UserParam type="int" name="label" value="1283"/>
+			<UserParam type="float" name="score_fit" value="0.522898652993673"/>
+			<UserParam type="float" name="score_correlation" value="0.945547695930534"/>
+			<UserParam type="float" name="FWHM" value="19.879795074462891"/>
+			<UserParam type="int" name="spectrum_index" value="6006"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=19246"/>
+		</feature>
+		<feature id="f_16360258163277325253">
+			<position dim="0">2619.431552362727416</position>
+			<position dim="1">643.821521475861005</position>
+			<intensity>3.74132e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.759258</overallquality>
+			<charge>2</charge>
+			<convexhull nr="0">
+				<pt x="2601.882419999999911" y="643.81976318359375" />
+				<pt x="2637.046139999999923" y="643.81976318359375" />
+				<pt x="2637.046139999999923" y="643.82220458984375" />
+				<pt x="2601.882419999999911" y="643.82220458984375" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2601.882419999999911" y="644.3179931640625" />
+				<pt x="2637.046139999999923" y="644.3179931640625" />
+				<pt x="2637.046139999999923" y="644.32244873046875" />
+				<pt x="2601.882419999999911" y="644.32244873046875" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2602.568879999999808" y="644.82012939453125" />
+				<pt x="2637.046139999999923" y="644.82012939453125" />
+				<pt x="2637.046139999999923" y="644.82379150390625" />
+				<pt x="2602.568879999999808" y="644.82379150390625" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="2603.927520000000186" y="645.32049560546875" />
+				<pt x="2637.046139999999923" y="645.32049560546875" />
+				<pt x="2637.046139999999923" y="645.32489013671875" />
+				<pt x="2603.927520000000186" y="645.32489013671875" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="2605.342860000000201" y="645.82342529296875" />
+				<pt x="2637.046139999999923" y="645.82342529296875" />
+				<pt x="2637.046139999999923" y="645.82769775390625" />
+				<pt x="2605.342860000000201" y="645.82769775390625" />
+			</convexhull>
+			<convexhull nr="5">
+				<pt x="2606.483220000000074" y="646.32305908203125" />
+				<pt x="2637.046139999999923" y="646.32305908203125" />
+				<pt x="2637.046139999999923" y="646.32794189453125" />
+				<pt x="2606.483220000000074" y="646.32794189453125" />
+			</convexhull>
+			<UserParam type="int" name="label" value="5398"/>
+			<UserParam type="float" name="score_fit" value="0.59289218741276"/>
+			<UserParam type="float" name="score_correlation" value="0.972306018279755"/>
+			<UserParam type="float" name="FWHM" value="16.808216094970703"/>
+			<UserParam type="int" name="spectrum_index" value="5740"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=18345"/>
+		</feature>
+		<feature id="f_8448158562658690566">
+			<position dim="0">1346.670824217391783</position>
+			<position dim="1">841.123051492398076</position>
+			<intensity>2.006378e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.843464</overallquality>
+			<charge>4</charge>
+			<convexhull nr="0">
+				<pt x="1282.2334800000001" y="841.123046875" />
+				<pt x="1307.744040000000041" y="841.123046875" />
+				<pt x="1307.744040000000041" y="841.127868652343636" />
+				<pt x="1282.2334800000001" y="841.127868652343636" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="1282.2334800000001" y="841.37347412109375" />
+				<pt x="1311.592139999999972" y="841.37347412109375" />
+				<pt x="1311.592139999999972" y="841.377990722656364" />
+				<pt x="1282.2334800000001" y="841.377990722656364" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="1282.2334800000001" y="841.622802734375" />
+				<pt x="1411.531199999999899" y="841.622802734375" />
+				<pt x="1411.531199999999899" y="841.627014160156364" />
+				<pt x="1282.2334800000001" y="841.627014160156364" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="1282.2334800000001" y="841.870056152343636" />
+				<pt x="1313.694120000000112" y="841.870056152343636" />
+				<pt x="1313.694120000000112" y="841.875" />
+				<pt x="1282.2334800000001" y="841.875" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="1282.2334800000001" y="842.1201171875" />
+				<pt x="1311.10997999999995" y="842.1201171875" />
+				<pt x="1311.10997999999995" y="842.12548828125" />
+				<pt x="1282.2334800000001" y="842.12548828125" />
+			</convexhull>
+			<convexhull nr="5">
+				<pt x="1282.2334800000001" y="842.370056152343636" />
+				<pt x="1312.190399999999954" y="842.370056152343636" />
+				<pt x="1312.190399999999954" y="842.3759765625" />
+				<pt x="1282.2334800000001" y="842.3759765625" />
+			</convexhull>
+			<convexhull nr="6">
+				<pt x="1290.325559999999996" y="842.62030029296875" />
+				<pt x="1312.992120000000114" y="842.62030029296875" />
+				<pt x="1312.992120000000114" y="842.626953125" />
+				<pt x="1290.325559999999996" y="842.626953125" />
+			</convexhull>
+			<convexhull nr="7">
+				<pt x="1294.438020000000051" y="842.8724365234375" />
+				<pt x="1311.592139999999972" y="842.8724365234375" />
+				<pt x="1311.592139999999972" y="842.877990722656364" />
+				<pt x="1294.438020000000051" y="842.877990722656364" />
+			</convexhull>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="841.3781120319" RT="1331" spectrum_reference="spectrum=3037" >
+				<PeptideHit score="1" sequence="GNTWSRKNVYYSPDSVEFWAFSFDEMAK" charge="4" aa_before="R" aa_after="Y" start="118" end="145" protein_refs="PH_12">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="2"/>
+					<UserParam type="string" name="MS:1002259" value="162"/>
+					<UserParam type="string" name="num_matched_peptides" value="82"/>
+					<UserParam type="int" name="isotope_error" value="1"/>
+					<UserParam type="float" name="MS:1002252" value="0.334"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="0.7"/>
+					<UserParam type="float" name="MS:1002256" value="4.0"/>
+					<UserParam type="float" name="MS:1002257" value="50.600000000000001"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.334"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="3.92395157629342"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="4.406719247264253"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="1.386294361119891"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.012345679012346"/>
+					<UserParam type="float" name="MS:1001492" value="-1.00284"/>
+					<UserParam type="float" name="MS:1001491" value="1.0"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="50.600000000000001"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="841.3786002819" RT="1358.4" spectrum_reference="spectrum=3355" >
+				<PeptideHit score="0.991539763113367" sequence="GNTWSRKNVYYSPDSVEFWAFSFDEMAK" charge="4" aa_before="R" aa_after="Y" start="118" end="145" protein_refs="PH_12">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="4"/>
+					<UserParam type="string" name="MS:1002259" value="162"/>
+					<UserParam type="string" name="num_matched_peptides" value="82"/>
+					<UserParam type="int" name="isotope_error" value="1"/>
+					<UserParam type="float" name="MS:1002252" value="0.373"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="2.1"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="16.199999999999999"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.373"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.785011242238338"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="4.406719247264253"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.024691358024691"/>
+					<UserParam type="float" name="MS:1001492" value="-0.965471"/>
+					<UserParam type="float" name="MS:1001491" value="0.995091"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="16.199999999999999"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="841.3794547819" RT="1386" spectrum_reference="spectrum=3677" >
+				<PeptideHit score="1" sequence="GNTWSRKNVYYSPDSVEFWAFSFDEMAK" charge="4" aa_before="R" aa_after="Y" start="118" end="145" protein_refs="PH_12">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="4"/>
+					<UserParam type="string" name="MS:1002259" value="162"/>
+					<UserParam type="string" name="num_matched_peptides" value="100"/>
+					<UserParam type="int" name="isotope_error" value="1"/>
+					<UserParam type="float" name="MS:1002252" value="0.427"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="2.2"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="18.899999999999999"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.427"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.939161922065597"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="4.605170185988092"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.024691358024691"/>
+					<UserParam type="float" name="MS:1001492" value="-0.970529"/>
+					<UserParam type="float" name="MS:1001491" value="0.995091"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="18.899999999999999"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="841.1262135319" RT="1413.2" spectrum_reference="spectrum=4010" >
+				<PeptideHit score="0.953658536585366" sequence="GNTWSRKNVYYSPDSVEFWAFSFDEMAK" charge="4" aa_before="R" aa_after="Y" start="118" end="145" protein_refs="PH_12">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="4"/>
+					<UserParam type="string" name="MS:1002259" value="162"/>
+					<UserParam type="string" name="num_matched_peptides" value="32"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="0.543"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="2.2"/>
+					<UserParam type="float" name="MS:1002256" value="2.0"/>
+					<UserParam type="float" name="MS:1002257" value="10.800000000000001"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.543"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.379546134130174"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="3.465735902799727"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.693147180559945"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.024691358024691"/>
+					<UserParam type="float" name="MS:1001492" value="-0.952166"/>
+					<UserParam type="float" name="MS:1001491" value="0.948102"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="10.800000000000001"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<UserParam type="int" name="label" value="13129"/>
+			<UserParam type="float" name="score_fit" value="0.723802184942732"/>
+			<UserParam type="float" name="score_correlation" value="0.982907836781767"/>
+			<UserParam type="float" name="FWHM" value="61.239295959472656"/>
+			<UserParam type="int" name="spectrum_index" value="1506"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=3221"/>
+		</feature>
+		<feature id="f_1561921100563117428">
+			<position dim="0">1948.014639980397305</position>
+			<position dim="1">444.743150444127537</position>
+			<intensity>1.54495e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.725485</overallquality>
+			<charge>2</charge>
+			<convexhull nr="0">
+				<pt x="1933.632180000000062" y="444.742706298828068" />
+				<pt x="1962.135119999999915" y="444.742706298828068" />
+				<pt x="1962.135119999999915" y="444.743682861328125" />
+				<pt x="1933.632180000000062" y="444.743682861328125" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="1934.915160000000014" y="445.24310302734375" />
+				<pt x="1962.135119999999915" y="445.24310302734375" />
+				<pt x="1962.135119999999915" y="445.24517822265625" />
+				<pt x="1934.915160000000014" y="445.24517822265625" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="1935.121259999999893" y="445.742889404296875" />
+				<pt x="1962.135119999999915" y="445.742889404296875" />
+				<pt x="1962.135119999999915" y="445.747406005859375" />
+				<pt x="1935.121259999999893" y="445.747406005859375" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="1938.479520000000093" y="446.245361328125" />
+				<pt x="1962.135119999999915" y="446.245361328125" />
+				<pt x="1962.135119999999915" y="446.2479248046875" />
+				<pt x="1938.479520000000093" y="446.2479248046875" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="1938.272159999999985" y="446.746765136718693" />
+				<pt x="1955.558880000000045" y="446.746765136718693" />
+				<pt x="1955.558880000000045" y="446.751190185546875" />
+				<pt x="1938.272159999999985" y="446.751190185546875" />
+			</convexhull>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="444.7433085319" RT="1938.6" spectrum_reference="spectrum=10364" >
+				<PeptideHit score="0.975283901135605" sequence="NDREVKK" charge="2" aa_before="K K K" aa_after="S S S" start="327 327 327" end="333 333 333" protein_refs="PH_4 PH_6 PH_5">
+					<UserParam type="string" name="target_decoy" value="target+decoy"/>
+					<UserParam type="string" name="MS:1002258" value="4"/>
+					<UserParam type="string" name="MS:1002259" value="12"/>
+					<UserParam type="string" name="num_matched_peptides" value="204"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="0.821"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="88.400000000000006"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="14.1"/>
+					<UserParam type="string" name="protein_references" value="non-unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.821"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.646174797384123"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.318119993844216"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.333333333333333"/>
+					<UserParam type="float" name="MS:1001492" value="-0.960915"/>
+					<UserParam type="float" name="MS:1001491" value="0.995091"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="14.1"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="444.7436385319" RT="1965.9" spectrum_reference="spectrum=10674" >
+				<PeptideHit score="0.934246575342466" sequence="NDREVKK" charge="2" aa_before="K K K" aa_after="S S S" start="327 327 327" end="333 333 333" protein_refs="PH_4 PH_6 PH_5">
+					<UserParam type="string" name="target_decoy" value="target+decoy"/>
+					<UserParam type="string" name="MS:1002258" value="4"/>
+					<UserParam type="string" name="MS:1002259" value="12"/>
+					<UserParam type="string" name="num_matched_peptides" value="205"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="0.83"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="85.5"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="9.800000000000001"/>
+					<UserParam type="string" name="protein_references" value="non-unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.83"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.282382385676526"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.323009979138408"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.333333333333333"/>
+					<UserParam type="float" name="MS:1001492" value="-0.948977"/>
+					<UserParam type="float" name="MS:1001491" value="0.9375"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="9.800000000000001"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<UserParam type="int" name="label" value="5399"/>
+			<UserParam type="float" name="score_fit" value="0.548703354115397"/>
+			<UserParam type="float" name="score_correlation" value="0.959221100699146"/>
+			<UserParam type="float" name="FWHM" value="13.576563835144043"/>
+			<UserParam type="int" name="spectrum_index" value="3467"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=10472"/>
+		</feature>
+		<feature id="f_11891782809328899736">
+			<position dim="0">2593.652505703043516</position>
+			<position dim="1">633.326181973559415</position>
+			<intensity>1.246391e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.850754</overallquality>
+			<charge>2</charge>
+			<convexhull nr="0">
+				<pt x="2573.915579999999864" y="633.32550048828125" />
+				<pt x="2612.722800000000007" y="633.32550048828125" />
+				<pt x="2612.722800000000007" y="633.32684326171875" />
+				<pt x="2573.915579999999864" y="633.32684326171875" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2573.915579999999864" y="633.82476806640625" />
+				<pt x="2612.722800000000007" y="633.82476806640625" />
+				<pt x="2612.722800000000007" y="633.8277587890625" />
+				<pt x="2573.915579999999864" y="633.8277587890625" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2573.915579999999864" y="634.3248291015625" />
+				<pt x="2612.722800000000007" y="634.3248291015625" />
+				<pt x="2612.722800000000007" y="634.32904052734375" />
+				<pt x="2573.915579999999864" y="634.32904052734375" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="2575.119540000000143" y="634.8262939453125" />
+				<pt x="2612.722800000000007" y="634.8262939453125" />
+				<pt x="2612.722800000000007" y="634.8309326171875" />
+				<pt x="2575.119540000000143" y="634.8309326171875" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="2576.174280000000181" y="635.327880859375" />
+				<pt x="2611.750079999999798" y="635.327880859375" />
+				<pt x="2611.750079999999798" y="635.333251953125" />
+				<pt x="2576.174280000000181" y="635.333251953125" />
+			</convexhull>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="633.3266330319" RT="2598.8" spectrum_reference="spectrum=18097" >
+				<PeptideHit score="0.793388429752066" sequence="KNMMEIMIQK" charge="2" aa_before="K K K K K" aa_after="I I I I I" start="143 143 143 143 143" end="152 152 152 152 152" protein_refs="PH_2 PH_9 PH_3 PH_8 PH_1">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="5"/>
+					<UserParam type="string" name="MS:1002259" value="18"/>
+					<UserParam type="string" name="num_matched_peptides" value="166"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="0.793"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="74.299999999999997"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="5.71"/>
+					<UserParam type="string" name="protein_references" value="non-unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.793"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="1.742219023667919"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.111987788356544"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.277777777777778"/>
+					<UserParam type="float" name="MS:1001492" value="-0.930601"/>
+					<UserParam type="float" name="MS:1001491" value="0.818066"/>
+					<UserParam type="float" name="MS:1001493" value="0.97363"/>
+					<UserParam type="float" name="Posterior Error Probability" value="0.97363"/>
+					<UserParam type="float" name="expect_score" value="5.71"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<UserParam type="int" name="label" value="5408"/>
+			<UserParam type="float" name="score_fit" value="0.733509651875748"/>
+			<UserParam type="float" name="score_correlation" value="0.986739660052254"/>
+			<UserParam type="float" name="FWHM" value="18.598936080932617"/>
+			<UserParam type="int" name="spectrum_index" value="5656"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=18034"/>
+		</feature>
+		<feature id="f_5293774453703973858">
+			<position dim="0">2542.564810726496035</position>
+			<position dim="1">598.797727716316558</position>
+			<intensity>1.219212e10</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.856604</overallquality>
+			<charge>4</charge>
+			<convexhull nr="0">
+				<pt x="2525.838780000000043" y="598.796630859375" />
+				<pt x="2559.159419999999955" y="598.796630859375" />
+				<pt x="2559.159419999999955" y="598.8018798828125" />
+				<pt x="2525.838780000000043" y="598.8018798828125" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2525.838780000000043" y="599.04791259765625" />
+				<pt x="2559.159419999999955" y="599.04791259765625" />
+				<pt x="2559.159419999999955" y="599.05047607421875" />
+				<pt x="2525.838780000000043" y="599.05047607421875" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2525.838780000000043" y="599.2982177734375" />
+				<pt x="2559.159419999999955" y="599.2982177734375" />
+				<pt x="2559.159419999999955" y="599.301025390625" />
+				<pt x="2525.838780000000043" y="599.301025390625" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="2525.838780000000043" y="599.5478515625" />
+				<pt x="2559.159419999999955" y="599.5478515625" />
+				<pt x="2559.159419999999955" y="599.54998779296875" />
+				<pt x="2525.838780000000043" y="599.54998779296875" />
+			</convexhull>
+			<convexhull nr="4">
+				<pt x="2525.838780000000043" y="599.79833984375" />
+				<pt x="2559.159419999999955" y="599.79833984375" />
+				<pt x="2559.159419999999955" y="599.8004150390625" />
+				<pt x="2525.838780000000043" y="599.8004150390625" />
+			</convexhull>
+			<convexhull nr="5">
+				<pt x="2529.539760000000115" y="600.048583984375" />
+				<pt x="2559.159419999999955" y="600.048583984375" />
+				<pt x="2559.159419999999955" y="600.05133056640625" />
+				<pt x="2529.539760000000115" y="600.05133056640625" />
+			</convexhull>
+			<convexhull nr="6">
+				<pt x="2533.916459999999916" y="600.29486083984375" />
+				<pt x="2559.159419999999955" y="600.29486083984375" />
+				<pt x="2559.159419999999955" y="600.30126953125" />
+				<pt x="2533.916459999999916" y="600.30126953125" />
+			</convexhull>
+			<convexhull nr="7">
+				<pt x="2539.210439999999835" y="600.548583984375" />
+				<pt x="2558.990279999999984" y="600.548583984375" />
+				<pt x="2558.990279999999984" y="600.55230712890625" />
+				<pt x="2539.210439999999835" y="600.55230712890625" />
+			</convexhull>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="598.8004925319" RT="2555" spectrum_reference="spectrum=17588" >
+				<PeptideHit score="0.959110473457676" sequence="SGSMSAYEMRMAIEAAGFKLNK" charge="4" aa_before="K K K" aa_after="K K K" start="630 630 630" end="651 651 651" protein_refs="PH_11 PH_0 PH_7">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="5"/>
+					<UserParam type="string" name="MS:1002259" value="126"/>
+					<UserParam type="string" name="num_matched_peptides" value="154"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="0.901"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="6.0"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="12.9"/>
+					<UserParam type="string" name="protein_references" value="non-unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="0.901"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="2.557227311367627"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.03695260241363"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.03968253968254"/>
+					<UserParam type="float" name="MS:1001492" value="-0.957767"/>
+					<UserParam type="float" name="MS:1001491" value="0.976011"/>
+					<UserParam type="float" name="MS:1001493" value="1.0"/>
+					<UserParam type="float" name="Posterior Error Probability" value="1.0"/>
+					<UserParam type="float" name="expect_score" value="12.9"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<UserParam type="int" name="label" value="12784"/>
+			<UserParam type="float" name="score_fit" value="0.742059310628623"/>
+			<UserParam type="float" name="score_correlation" value="0.98882951876314"/>
+			<UserParam type="float" name="FWHM" value="15.802227020263672"/>
+			<UserParam type="int" name="spectrum_index" value="5485"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=17443"/>
+		</feature>
+		<feature id="f_4200714179935216141">
+			<position dim="0">2517.284925866604226</position>
+			<position dim="1">589.311335279335935</position>
+			<intensity>8.247628e09</intensity>
+			<quality dim="0">0.0</quality>
+			<quality dim="1">0.0</quality>
+			<overallquality>0.89511</overallquality>
+			<charge>2</charge>
+			<convexhull nr="0">
+				<pt x="2499.874980000000051" y="589.3104248046875" />
+				<pt x="2534.729580000000169" y="589.3104248046875" />
+				<pt x="2534.729580000000169" y="589.3116455078125" />
+				<pt x="2499.874980000000051" y="589.3116455078125" />
+			</convexhull>
+			<convexhull nr="1">
+				<pt x="2499.874980000000051" y="589.810791015625" />
+				<pt x="2534.729580000000169" y="589.810791015625" />
+				<pt x="2534.729580000000169" y="589.812255859375" />
+				<pt x="2499.874980000000051" y="589.812255859375" />
+			</convexhull>
+			<convexhull nr="2">
+				<pt x="2499.874980000000051" y="590.31048583984375" />
+				<pt x="2534.729580000000169" y="590.31048583984375" />
+				<pt x="2534.729580000000169" y="590.31329345703125" />
+				<pt x="2499.874980000000051" y="590.31329345703125" />
+			</convexhull>
+			<convexhull nr="3">
+				<pt x="2499.874980000000051" y="590.8111572265625" />
+				<pt x="2534.729580000000169" y="590.8111572265625" />
+				<pt x="2534.729580000000169" y="590.81585693359375" />
+				<pt x="2499.874980000000051" y="590.81585693359375" />
+			</convexhull>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="589.3109720319" RT="2504.5" spectrum_reference="spectrum=16983" >
+				<PeptideHit score="0" sequence="EITALAPSTM(Oxidation)K" charge="2" aa_before="K" aa_after="I" start="317" end="327" protein_refs="PH_10">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="13"/>
+					<UserParam type="string" name="MS:1002259" value="20"/>
+					<UserParam type="string" name="num_matched_peptides" value="215"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="1.972"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="700.600000000000023"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="9.449999999999999e-06"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="1.0"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="-11.569495816458623"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.370638028127662"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.65"/>
+					<UserParam type="float" name="MS:1001492" value="-0.486897"/>
+					<UserParam type="float" name="MS:1001491" value="8.54701e-03"/>
+					<UserParam type="float" name="MS:1001493" value="0.197432"/>
+					<UserParam type="float" name="Posterior Error Probability" value="0.197432"/>
+					<UserParam type="float" name="expect_score" value="9.449999999999999e-06"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<PeptideIdentification identification_run_ref="PI_0" score_type="q-value" higher_score_better="false" significance_threshold="0" MZ="589.3113630319" RT="2532" spectrum_reference="spectrum=17313" >
+				<PeptideHit score="0" sequence="EITALAPSTM(Oxidation)K" charge="2" aa_before="K" aa_after="I" start="317" end="327" protein_refs="PH_10">
+					<UserParam type="string" name="target_decoy" value="target"/>
+					<UserParam type="string" name="MS:1002258" value="13"/>
+					<UserParam type="string" name="MS:1002259" value="20"/>
+					<UserParam type="string" name="num_matched_peptides" value="217"/>
+					<UserParam type="int" name="isotope_error" value="0"/>
+					<UserParam type="float" name="MS:1002252" value="2.013"/>
+					<UserParam type="float" name="MS:1002253" value="1.0"/>
+					<UserParam type="float" name="MS:1002254" value="0.0"/>
+					<UserParam type="float" name="MS:1002255" value="708.200000000000045"/>
+					<UserParam type="float" name="MS:1002256" value="1.0"/>
+					<UserParam type="float" name="MS:1002257" value="4.819999999999999e-06"/>
+					<UserParam type="string" name="protein_references" value="unique"/>
+					<UserParam type="float" name="COMET:deltCn" value="1.0"/>
+					<UserParam type="float" name="COMET:deltLCn" value="0.0"/>
+					<UserParam type="float" name="COMET:lnExpect" value="-12.242736629901763"/>
+					<UserParam type="float" name="COMET:lnNumSP" value="5.37989735354046"/>
+					<UserParam type="float" name="COMET:lnRankSP" value="0.0"/>
+					<UserParam type="float" name="COMET:IonFrac" value="0.65"/>
+					<UserParam type="float" name="MS:1001492" value="-0.472354"/>
+					<UserParam type="float" name="MS:1001491" value="8.54701e-03"/>
+					<UserParam type="float" name="MS:1001493" value="0.185507"/>
+					<UserParam type="float" name="Posterior Error Probability" value="0.185507"/>
+					<UserParam type="float" name="expect_score" value="4.819999999999999e-06"/>
+				</PeptideHit>
+				<UserParam type="int" name="id_merge_index" value="0"/>
+			</PeptideIdentification>
+			<UserParam type="int" name="label" value="5414"/>
+			<UserParam type="float" name="score_fit" value="0.80506457746461"/>
+			<UserParam type="float" name="score_correlation" value="0.995227586961161"/>
+			<UserParam type="float" name="FWHM" value="16.524906158447266"/>
+			<UserParam type="int" name="spectrum_index" value="5401"/>
+			<UserParam type="string" name="spectrum_native_id" value="spectrum=17137"/>
+		</feature>
+	</featureList>
+</featureMap>

@@ -1,0 +1,4 @@
+# Peptide abundances computed from file 'Prot_01_IDConflictResolver.consensusXML'
+# Parameters (relevant only): best_charge_and_fraction=true
+# Files/samples associated with abundance values below: 1: 'mergedConsensusXMLFile' ('tmt10plex_126'), 2: 'mergedConsensusXMLFile' ('tmt10plex_127N'), 3: 'mergedConsensusXMLFile' ('tmt10plex_127C'), 4: 'mergedConsensusXMLFile' ('tmt10plex_128N'), 5: 'mergedConsensusXMLFile' ('tmt10plex_128C'), 6: 'mergedConsensusXMLFile' ('tmt10plex_129N'), 7: 'mergedConsensusXMLFile' ('tmt10plex_129C'), 8: 'mergedConsensusXMLFile' ('tmt10plex_130N'), 9: 'mergedConsensusXMLFile' ('tmt10plex_130C'), 10: 'mergedConsensusXMLFile' ('tmt10plex_131')
+"peptide"	"protein"	"n_proteins"	"charge"	"ACH-000849"	"ACH-000441"	"ACH-000248"	"ACH-000684"	"ACH-000856"	"ACH-000348"	"ACH-000062"	"ACH-000650"	"ACH-000484"	"reference"	"fraction"

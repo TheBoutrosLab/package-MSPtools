@@ -305,3 +305,6 @@ work/
 *.temp
 *.xlk
 *.~vsd*
+
+# Keep the small reference fixtures needed by MSPtools integration tests.
+!test/files/**

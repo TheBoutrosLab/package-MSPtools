@@ -1,12 +1,7 @@
 """ MSPtools """
 from datetime import datetime
-from importlib.metadata import PackageNotFoundError, version
 
-
-try:
-    __version__ = version('msptools')
-except PackageNotFoundError:
-    __version__ = '0.1.0'
+__version__ = '1.0.0'
 
 def logger(message:str) -> None:
     """ Print message to the stdout. """

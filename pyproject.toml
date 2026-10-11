@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
@@ -43,14 +43,7 @@ msptools = "msptools.cli.__main__:main"
 "Changelog" = "https://github.com/TheBoutrosLab/package-MSPtools/blob/main/CHANGELOG.md"
 
 [tool.hatch.version]
-source = "vcs"
-
-[tool.hatch.version.raw-options]
-git_describe_command = "git describe --dirty --tags --long --match 'v[0-9]*.[0-9]*.[0-9]*'"
-fallback_version = "0.1.0"
-
-[tool.hatch.build.hooks.vcs]
-version-file = "msptools/_version.py"
+path = "msptools/__init__.py"
 
 [project.optional-dependencies]
 dev-dependencies = [

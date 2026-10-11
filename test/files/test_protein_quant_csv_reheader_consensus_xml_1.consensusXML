@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="https://www.openms.de/xml-stylesheet/ConsensusXML.xsl" ?>
+<consensusXML version="1.7" experiment_type="label-free" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/OpenMS/OpenMS/develop/share/OpenMS/SCHEMAS/ConsensusXML_1_7.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<mapList count="20">
+		<map id="0" name="CPTAC_LUAD_13" label="tmt10plex_126" size="75332">
+			<UserParam type="string" name="channel_name" value="126"/>
+			<UserParam type="int" name="channel_id" value="0"/>
+			<UserParam type="string" name="channel_description" value="reference"/>
+			<UserParam type="float" name="channel_center" value="126.127725999999996"/>
+		</map>
+		<map id="1" name="CPTAC_LUAD_13" label="tmt10plex_127N" size="75332">
+			<UserParam type="string" name="channel_name" value="127N"/>
+			<UserParam type="int" name="channel_id" value="1"/>
+			<UserParam type="string" name="channel_description" value="CPT0001"/>
+			<UserParam type="float" name="channel_center" value="127.124761000000007"/>
+		</map>
+		<map id="2" name="CPTAC_LUAD_13" label="tmt10plex_127C" size="75332">
+			<UserParam type="string" name="channel_name" value="127C"/>
+			<UserParam type="int" name="channel_id" value="2"/>
+			<UserParam type="string" name="channel_description" value="CPT0002"/>
+			<UserParam type="float" name="channel_center" value="127.131080999999995"/>
+		</map>
+		<map id="3" name="CPTAC_LUAD_13" label="tmt10plex_128N" size="75332">
+			<UserParam type="string" name="channel_name" value="128N"/>
+			<UserParam type="int" name="channel_id" value="3"/>
+			<UserParam type="string" name="channel_description" value="CPT0003"/>
+			<UserParam type="float" name="channel_center" value="128.128116000000006"/>
+		</map>
+		<map id="4" name="CPTAC_LUAD_13" label="tmt10plex_128C" size="75332">
+			<UserParam type="string" name="channel_name" value="128C"/>
+			<UserParam type="int" name="channel_id" value="4"/>
+			<UserParam type="string" name="channel_description" value="CPT0004"/>
+			<UserParam type="float" name="channel_center" value="128.134435999999994"/>
+		</map>
+		<map id="5" name="CPTAC_LUAD_13" label="tmt10plex_129N" size="75332">
+			<UserParam type="string" name="channel_name" value="129N"/>
+			<UserParam type="int" name="channel_id" value="5"/>
+			<UserParam type="string" name="channel_description" value="CPT0005"/>
+			<UserParam type="float" name="channel_center" value="129.131471000000005"/>
+		</map>
+		<map id="6" name="CPTAC_LUAD_13" label="tmt10plex_129C" size="75332">
+			<UserParam type="string" name="channel_name" value="129C"/>
+			<UserParam type="int" name="channel_id" value="6"/>
+			<UserParam type="string" name="channel_description" value="CPT0006"/>
+			<UserParam type="float" name="channel_center" value="129.137789999999995"/>
+		</map>
+		<map id="7" name="CPTAC_LUAD_13" label="tmt10plex_130N" size="75332">
+			<UserParam type="string" name="channel_name" value="130N"/>
+			<UserParam type="int" name="channel_id" value="7"/>
+			<UserParam type="string" name="channel_description" value="CPT0007"/>
+			<UserParam type="float" name="channel_center" value="130.134825000000006"/>
+		</map>
+		<map id="8" name="CPTAC_LUAD_13" label="tmt10plex_130C" size="75332">
+			<UserParam type="string" name="channel_name" value="130C"/>
+			<UserParam type="int" name="channel_id" value="8"/>
+			<UserParam type="string" name="channel_description" value="CPT0008"/>
+			<UserParam type="float" name="channel_center" value="130.141144999999995"/>
+		</map>
+		<map id="9" name="CPTAC_LUAD_13" label="tmt10plex_131" size="75332">
+			<UserParam type="string" name="channel_name" value="131"/>
+			<UserParam type="int" name="channel_id" value="9"/>
+			<UserParam type="string" name="channel_description" value="CPT0009"/>
+			<UserParam type="float" name="channel_center" value="131.138180000000006"/>
+		</map>
+		<map id="10" name="CPTAC_LUAD_14" label="tmt10plex_126" size="87251">
+			<UserParam type="string" name="channel_name" value="126"/>
+			<UserParam type="int" name="channel_id" value="0"/>
+			<UserParam type="string" name="channel_description" value="reference"/>
+			<UserParam type="float" name="channel_center" value="126.127725999999996"/>
+		</map>
+		<map id="11" name="CPTAC_LUAD_14" label="tmt10plex_127N" size="87251">
+			<UserParam type="string" name="channel_name" value="127N"/>
+			<UserParam type="int" name="channel_id" value="1"/>
+			<UserParam type="string" name="channel_description" value="CPT0001"/>
+			<UserParam type="float" name="channel_center" value="127.124761000000007"/>
+		</map>
+		<map id="12" name="CPTAC_LUAD_14" label="tmt10plex_127C" size="87251">
+			<UserParam type="string" name="channel_name" value="127C"/>
+			<UserParam type="int" name="channel_id" value="2"/>
+			<UserParam type="string" name="channel_description" value="CPT0002"/>
+			<UserParam type="float" name="channel_center" value="127.131080999999995"/>
+		</map>
+		<map id="13" name="CPTAC_LUAD_14" label="tmt10plex_128N" size="87251">
+			<UserParam type="string" name="channel_name" value="128N"/>
+			<UserParam type="int" name="channel_id" value="3"/>
+			<UserParam type="string" name="channel_description" value="CPT0003"/>
+			<UserParam type="float" name="channel_center" value="128.128116000000006"/>
+		</map>
+		<map id="14" name="CPTAC_LUAD_14" label="tmt10plex_128C" size="87251">
+			<UserParam type="string" name="channel_name" value="128C"/>
+			<UserParam type="int" name="channel_id" value="4"/>
+			<UserParam type="string" name="channel_description" value="CPT0004"/>
+			<UserParam type="float" name="channel_center" value="128.134435999999994"/>
+		</map>
+		<map id="15" name="CPTAC_LUAD_14" label="tmt10plex_129N" size="87251">
+			<UserParam type="string" name="channel_name" value="129N"/>
+			<UserParam type="int" name="channel_id" value="5"/>
+			<UserParam type="string" name="channel_description" value="CPT0005"/>
+			<UserParam type="float" name="channel_center" value="129.131471000000005"/>
+		</map>
+		<map id="16" name="CPTAC_LUAD_14" label="tmt10plex_129C" size="87251">
+			<UserParam type="string" name="channel_name" value="129C"/>
+			<UserParam type="int" name="channel_id" value="6"/>
+			<UserParam type="string" name="channel_description" value="CPT0006"/>
+			<UserParam type="float" name="channel_center" value="129.137789999999995"/>
+		</map>
+		<map id="17" name="CPTAC_LUAD_14" label="tmt10plex_130N" size="87251">
+			<UserParam type="string" name="channel_name" value="130N"/>
+			<UserParam type="int" name="channel_id" value="7"/>
+			<UserParam type="string" name="channel_description" value="CPT0007"/>
+			<UserParam type="float" name="channel_center" value="130.134825000000006"/>
+		</map>
+		<map id="18" name="CPTAC_LUAD_14" label="tmt10plex_130C" size="87251">
+			<UserParam type="string" name="channel_name" value="130C"/>
+			<UserParam type="int" name="channel_id" value="8"/>
+			<UserParam type="string" name="channel_description" value="CPT0008"/>
+			<UserParam type="float" name="channel_center" value="130.141144999999995"/>
+		</map>
+		<map id="19" name="CPTAC_LUAD_14" label="tmt10plex_131" size="87251">
+			<UserParam type="string" name="channel_name" value="131"/>
+			<UserParam type="int" name="channel_id" value="9"/>
+			<UserParam type="string" name="channel_description" value="CPT0009"/>
+			<UserParam type="float" name="channel_center" value="131.138180000000006"/>
+		</map>
+	</mapList>
+	<consensusElementList>
+	</consensusElementList>
+</consensusXML>

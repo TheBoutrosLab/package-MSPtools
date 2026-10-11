@@ -1,0 +1,9 @@
+{
+    "version": {
+      "python": "3.8.17",
+      "biopython": "1.82",
+      "mopepgen": "1.3.0"
+    },
+    "canonical_pools": {},
+    "source": "GENCODE"
+}

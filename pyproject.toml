@@ -3,12 +3,13 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "REPLACE_PACKAGE"
-requires-python = ">=3.10"
+name = "msptools"
+requires-python = ">=3.10,<3.12"
 authors = [
-    {name = 'REPLACE_NAME', email = 'REPLACE_EMAIL@example.org'}
+    {name = 'Chenghao Zhu'},
+    {name = 'Lydia Y. Liu'}
 ]
-description = 'Libraries for building web applications in Boutros Lab.'
+description = 'Command line toolkit for mass spectrometry based proteomics data processing and analysis.'
 classifiers = [
     # Add or remove any appropriate classifiers
     "Programming Language :: Python :: 3",
@@ -22,36 +23,39 @@ classifiers = [
     "Natural Language :: English"
 ]
 
-dependencies = []
+dependencies = [
+    "biopython>=1.80,<=1.83",
+    "numpy>=1.26,<2",
+    "pyopenms==3.1.0",
+    "mopepgen==1.4.2",
+]
 
 dynamic = ["version"]
 readme = {file = "README.md", content-type = "text/markdown"}
 
+[project.scripts]
+msptools = "msptools.cli.__main__:main"
+
 [project.urls]
-"Homepage" = "https://github.com/TheBoutrosLab/REPLACE_PACKAGE_REPO"
-"Bug Tracker" = "https://github.com/TheBoutrosLab/REPLACE_PACKAGE_REPO/issues"
-"Repository" = "https://github.com/TheBoutrosLab/REPLACE_PACKAGE_REPO.git"
-"Changelog" = "https://github.com/TheBoutrosLab/REPLACE_PACKAGE_REPO/blob/main/CHANGELOG.md"
+"Homepage" = "https://github.com/TheBoutrosLab/package-MSPtools"
+"Bug Tracker" = "https://github.com/TheBoutrosLab/package-MSPtools/issues"
+"Repository" = "https://github.com/TheBoutrosLab/package-MSPtools.git"
+"Changelog" = "https://github.com/TheBoutrosLab/package-MSPtools/blob/main/CHANGELOG.md"
 
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.version.raw-options]
 git_describe_command = "git describe --dirty --tags --long --match 'v[0-9]*.[0-9]*.[0-9]*'"
+fallback_version = "0.1.0"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "REPLACE_PACKAGE/_version.py"
+version-file = "msptools/_version.py"
 
 [project.optional-dependencies]
 dev-dependencies = [
-    "pytest ~= 9.1",
-    "pytest-mock ~= 3.12",
-    "mock ~= 5.1",
-    "pytest-cov ~= 7.1",
-    "pyright ~= 1.1",
-    "isort ~= 9.0",
-    "black ~= 26.5",
-    "pylint ~= 4.0"
+    "pytest>=8,<10",
+    "pytest-cov>=5,<8",
 ]
 
 [tool.pyright]
@@ -59,7 +63,7 @@ pythonVersion = "3.10"
 
 include = [
     "*.py",
-    "REPLACE_PACKAGE/",
+    "msptools/",
     "test/"
 ]
 
@@ -144,7 +148,7 @@ exclude = "./(typings|build|dist)"
 
 [tool.isort]
 profile = "black"
-src_paths = ["REPLACE_PACKAGE"]
+src_paths = ["msptools"]
 skip_glob = ["typings", "build", "dist"]
 
 [tool.tox]
@@ -152,11 +156,10 @@ legacy_tox_ini = """
 [tox]
 env_list =
     py3.10
-    py3.12
 
 [testenv]
 deps =
     pytest
     pytest-cov
-commands = pytest test --doctest-modules --junitxml=junit/test-results.xml
+commands = pytest test --junitxml=junit/test-results.xml
 """

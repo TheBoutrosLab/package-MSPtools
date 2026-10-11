@@ -1,0 +1,10 @@
+# Protein abundances computed from file 'CPCG_FeatureLinkerUnlabeledQT.consensusXML'
+# Parameters (relevant only): top=3, average=median
+# Files/samples associated with abundance values below: 1: 'Liver-2', 2: 'Liver-1'
+"protein"	"n_proteins"	"protein_score"	"n_peptides"	"abundance_1"	"abundance_2"
+"ENSMUSP00000003655.7"	1	0	3	5.34648992e08	5.34648992e08
+"ENSMUSP00000008893.8"	1	0	5	8.1126896e08	8.1126896e08
+"ENSMUSP00000008991.6"	1	0	10	1.845565952e09	1.845565952e09
+"ENSMUSP00000012587.3"	1	0	10	2.31607296e08	2.31607296e08
+"ENSMUSP00000025590.9"	1	0	3	6.486364e07	6.486364e07
+"ENSMUSP00000025618.8"	1	0	3	1.32358022e08	1.32358022e08

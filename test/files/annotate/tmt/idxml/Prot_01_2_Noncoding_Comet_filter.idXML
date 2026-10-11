@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://www.openms.de/xml-stylesheet/IdXML.xsl" ?>
+<IdXML version="1.5" xsi:noNamespaceSchemaLocation="https://www.openms.de/xml-schema/IdXML_1_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SearchParameters id="SP_0" db="Prot_01_split_Noncoding_encode_decoy.fasta" db_version="" taxonomy="" mass_type="monoisotopic" charges="1:5" enzyme="no cleavage" missed_cleavages="0" precursor_peak_tolerance="20" precursor_peak_tolerance_ppm="true" peak_mass_tolerance="0.5025" peak_mass_tolerance_ppm="false" >
+		<FixedModification name="TMT6plex (N-term)" />
+		<FixedModification name="Carbamidomethyl (C)" />
+		<FixedModification name="TMT6plex (K)" />
+		<VariableModification name="Oxidation (M)" />
+		<VariableModification name="Gln-&gt;pyro-Glu (N-term Q)" />
+		<VariableModification name="TMT6plex (S)" />
+				<UserParam type="string" name="CometAdapter:1:in" value="Prot_01_reindex_12_Canonical_Coding.mzML"/>
+				<UserParam type="string" name="CometAdapter:1:out" value="Prot_01_reindex_12_Canonical_Coding_Comet.idXML"/>
+				<UserParam type="string" name="CometAdapter:1:database" value="Prot_01_split_Noncoding_encode_decoy.fasta"/>
+				<UserParam type="string" name="CometAdapter:1:comet_executable" value="comet.exe"/>
+				<UserParam type="string" name="CometAdapter:1:pin_out" value=""/>
+				<UserParam type="string" name="CometAdapter:1:default_params_file" value=""/>
+				<UserParam type="float" name="CometAdapter:1:precursor_mass_tolerance" value="20.0"/>
+				<UserParam type="string" name="CometAdapter:1:precursor_error_units" value="ppm"/>
+				<UserParam type="string" name="CometAdapter:1:isotope_error" value="0/1/2"/>
+				<UserParam type="float" name="CometAdapter:1:fragment_mass_tolerance" value="0.5025"/>
+				<UserParam type="string" name="CometAdapter:1:fragment_error_units" value="Da"/>
+				<UserParam type="float" name="CometAdapter:1:fragment_bin_offset" value="0.4"/>
+				<UserParam type="string" name="CometAdapter:1:instrument" value="low_res"/>
+				<UserParam type="string" name="CometAdapter:1:use_A_ions" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:use_B_ions" value="true"/>
+				<UserParam type="string" name="CometAdapter:1:use_C_ions" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:use_X_ions" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:use_Y_ions" value="true"/>
+				<UserParam type="string" name="CometAdapter:1:use_Z_ions" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:use_NL_ions" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:enzyme" value="no cleavage"/>
+				<UserParam type="string" name="CometAdapter:1:second_enzyme" value=""/>
+				<UserParam type="string" name="CometAdapter:1:num_enzyme_termini" value="fully"/>
+				<UserParam type="int" name="CometAdapter:1:missed_cleavages" value="0"/>
+				<UserParam type="int" name="CometAdapter:1:min_peptide_length" value="7"/>
+				<UserParam type="int" name="CometAdapter:1:max_peptide_length" value="35"/>
+				<UserParam type="int" name="CometAdapter:1:num_hits" value="1"/>
+				<UserParam type="string" name="CometAdapter:1:precursor_charge" value="1:5"/>
+				<UserParam type="string" name="CometAdapter:1:override_charge" value="keep known search unknown"/>
+				<UserParam type="int" name="CometAdapter:1:ms_level" value="2"/>
+				<UserParam type="string" name="CometAdapter:1:activation_method" value="ALL"/>
+				<UserParam type="string" name="CometAdapter:1:digest_mass_range" value="500:5000"/>
+				<UserParam type="int" name="CometAdapter:1:max_fragment_charge" value="3"/>
+				<UserParam type="int" name="CometAdapter:1:max_precursor_charge" value="5"/>
+				<UserParam type="string" name="CometAdapter:1:clip_nterm_methionine" value="false"/>
+				<UserParam type="int" name="CometAdapter:1:spectrum_batch_size" value="20000"/>
+				<UserParam type="floatList" name="CometAdapter:1:mass_offsets" value="[0.0]"/>
+				<UserParam type="int" name="CometAdapter:1:minimum_peaks" value="15"/>
+				<UserParam type="float" name="CometAdapter:1:minimum_intensity" value="0.0"/>
+				<UserParam type="string" name="CometAdapter:1:remove_precursor_peak" value="no"/>
+				<UserParam type="float" name="CometAdapter:1:remove_precursor_tolerance" value="1.5"/>
+				<UserParam type="string" name="CometAdapter:1:clear_mz_range" value="125.5:131.5"/>
+				<UserParam type="stringList" name="CometAdapter:1:fixed_modifications" value="[Carbamidomethyl (C),TMT6plex (N-term),TMT6plex (K)]"/>
+				<UserParam type="stringList" name="CometAdapter:1:variable_modifications" value="[Oxidation (M),Gln-&gt;pyro-Glu (N-term Q),TMT6plex (S)]"/>
+				<UserParam type="intList" name="CometAdapter:1:binary_modifications" value="[]"/>
+				<UserParam type="int" name="CometAdapter:1:max_variable_mods_in_peptide" value="3"/>
+				<UserParam type="string" name="CometAdapter:1:require_variable_mod" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:reindex" value="true"/>
+				<UserParam type="string" name="CometAdapter:1:log" value=""/>
+				<UserParam type="int" name="CometAdapter:1:debug" value="0"/>
+				<UserParam type="int" name="CometAdapter:1:threads" value="8"/>
+				<UserParam type="string" name="CometAdapter:1:no_progress" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:force" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:test" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:decoy_string" value="DECOY_"/>
+				<UserParam type="string" name="CometAdapter:1:decoy_string_position" value="prefix"/>
+				<UserParam type="string" name="CometAdapter:1:missing_decoy_action" value="warn"/>
+				<UserParam type="string" name="CometAdapter:1:write_protein_sequence" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:write_protein_description" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:keep_unreferenced_proteins" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:unmatched_action" value="remove"/>
+				<UserParam type="int" name="CometAdapter:1:aaa_max" value="0"/>
+				<UserParam type="int" name="CometAdapter:1:mismatches_max" value="0"/>
+				<UserParam type="string" name="CometAdapter:1:IL_equivalent" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:allow_nterm_protein_cleavage" value="false"/>
+				<UserParam type="string" name="CometAdapter:1:name" value="no cleavage"/>
+				<UserParam type="string" name="CometAdapter:1:specificity" value="full"/>
+				<UserParam type="string" name="EnzymeTermSpecificity" value="full"/>
+				<UserParam name="EnzymeTermSpecificity" type="string" value="full" />
+	</SearchParameters>
+	<IdentificationRun date="0000-00-00T00:00:00" search_engine="Comet" search_engine_version="# comet_version 2019.01 rev. 5" search_parameters_ref="SP_0" >
+		<ProteinIdentification score_type="" higher_score_better="true" significance_threshold="0" >
+			<ProteinHit id="PH_0" accession="fcbcbaa6-00bf-4c6d-94b2-1e40fdd240c6" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_1" accession="fafe4a5d-71f8-4c60-9b52-25896b7a5b22" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_2" accession="f7d4915b-ab1a-4a8c-8f85-c68a63270c49" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_3" accession="f4afbd86-8306-460d-96ac-85c6e92bca33" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_4" accession="f344bf9a-4c44-49b9-9770-710dd9223260" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_5" accession="ec44b46d-c22d-424c-bee0-e8e11b69222f" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_6" accession="e60ed53b-9268-40bc-9122-48a48b2d87c2" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_7" accession="e4828c11-6af5-46fb-bc64-353ffb97a0f1" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_8" accession="e34d1f9e-604f-491d-b58f-5582ebee8c2e" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_9" accession="e31de2fc-43dc-455c-ac05-8496af9dbc2a" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_10" accession="e124247f-81ef-40b4-ba25-8565bd2bcd16" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_11" accession="d31644e9-0058-42cc-bdb4-586274efa962" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_12" accession="cb96ce31-407c-4eae-b1f0-da9e8f63f5ae" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_13" accession="ca43d113-1c23-484d-9596-5a1d455921a2" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_14" accession="c9cd7521-30e2-4e2e-8830-991e1df73fbc" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_15" accession="c956991b-5ade-4e20-ac52-acfb473a9c4e" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_16" accession="c83c154b-10b7-44bf-a4a6-15af3519f1a1" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_17" accession="b90e2d93-0ba5-4085-9761-ae6b6b56e0db" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_18" accession="b3bddbc7-3c5e-4577-89ee-7ab29367f242" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_19" accession="ac29d1b1-ed79-4616-830e-2d9fdedc390f" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_20" accession="a7d2a3d7-cc97-4edf-91e4-b71b26f104ba" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_21" accession="9d7774c3-d7d0-4241-b093-3ed996536343" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_22" accession="9a2e43b2-d093-4bd9-bd49-2bb7572de935" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_23" accession="9963cc30-7894-40cb-bc44-e9aacbeffb39" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_24" accession="95df23c9-ec08-4124-9113-d3065c7d0851" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_25" accession="93fd8f2a-66d6-405a-8536-224dc0d7aa1f" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_26" accession="939a49fc-9387-4d51-83f5-6bcb03ea5e1d" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_27" accession="9200accc-2d30-4c32-b4af-452974d371cd" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_28" accession="8a3db124-a0ee-43e5-9526-fc2453b5af34" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_29" accession="823c4574-7c61-4782-9f06-fa887dc18c19" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_30" accession="7c8b180c-dacc-45e6-b103-6e8f7e46c2f3" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_31" accession="7a80f66a-f57b-4dc6-bf90-1e0e0ffc77b5" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_32" accession="7694ba6b-27d0-429b-bda4-292f28a46928" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_33" accession="7590fbf9-2bcd-4271-945b-22f431d53cdc" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_34" accession="73376b69-37d5-44a5-9488-430cf6f711aa" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_35" accession="72037aef-bc89-4f71-a2de-4b1810041bb4" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_36" accession="702a367e-4b12-4aec-b3ee-84b8625338e0" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_37" accession="6aa6e929-9d24-44b5-97a9-aaff48f47dd9" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_38" accession="62c6cb48-03bf-45a6-ba7a-a8a5bd3595a1" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_39" accession="6155e847-9bbe-4517-8908-1740c619ece4" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_40" accession="5fd6d312-7067-4aad-8f1a-f6447f71bb22" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_41" accession="5dc139a0-35e0-45a6-84cf-64414f6e0f3c" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_42" accession="5a6e9222-e562-4f73-935d-7e13d25b25cb" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_43" accession="5607e0d1-3b7c-4b69-9693-506e2aa732d1" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_44" accession="55a7d171-2d49-434d-b0a5-f7ff19631143" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_45" accession="5473d0bd-d0e9-4ab0-90c0-b5d9c3a6338d" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_46" accession="4b847a30-d7ca-4afd-823f-e29825465272" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_47" accession="4b7f189c-f7d5-44a5-a9d4-27a9e94a82cb" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_48" accession="49fd0643-62cb-421f-ac1a-a670deedb1a6" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_49" accession="48570081-f89c-4112-8806-8b08e5ce696a" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_50" accession="48487ac4-4bce-47b8-8812-6c013efada63" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_51" accession="44f93ea2-c261-42e1-8244-b4da12a57ead" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_52" accession="44b7af44-2a47-46cf-99e4-1ceecaad574a" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_53" accession="3ff1f989-7cb4-4dac-9aeb-96f80c4e6009" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_54" accession="3ada8a47-1eda-42b4-96db-c1c5123be354" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_55" accession="3a1105fc-b9c9-41e6-b3b9-c7083fac200e" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_56" accession="33304ecd-a7e2-4baa-a51e-9f9591bf9167" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_57" accession="306827fa-01ea-418c-965d-99af33c80771" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_58" accession="2db4953d-d93d-4a7d-9cca-884a5ffb3d01" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_59" accession="284e969d-8c5d-4b45-baf2-5bc9768c42da" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_60" accession="27bc56e4-273d-46d5-abd1-ef5c037c6af1" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_61" accession="238ab61a-6217-4080-be6c-9d7be6d80c57" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_62" accession="1c2d4dca-aec4-41d3-a12e-15807a7546fe" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_63" accession="13f3c554-2df3-4058-80cd-4678b478c6cd" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_64" accession="13be87b9-695c-43ba-bc05-aa609b18d847" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_65" accession="13614fb5-1035-4c00-88f7-373663bc34f7" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_66" accession="0d77e8b1-6edc-4bde-be58-f2364b79ccf5" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_67" accession="05ca5bc1-5300-434a-a0ba-03bc96cb2776" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_68" accession="02f54ff6-5bc6-4ee1-a1a7-3c94aa0a2a35" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<ProteinHit id="PH_69" accession="021420c3-3255-4afd-b5c4-338bd42f06be" score="0.0" sequence="" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+			</ProteinHit>
+			<UserParam type="stringList" name="spectra_data" value="[Prot_01_reindex_12_Canonical_Coding.mzML,Prot_01_reindex_4_Canonical_Coding.mzML,Prot_01_reindex_9_Canonical_Coding.mzML,Prot_01_reindex_6_Canonical_Coding.mzML,Prot_01_reindex_5_Canonical_Coding.mzML,Prot_01_reindex_1_Canonical_Coding.mzML,Prot_01_reindex_10_Canonical_Coding.mzML,Prot_01_reindex_2_Canonical_Coding.mzML,Prot_01_reindex_11_Canonical_Coding.mzML,Prot_01_reindex_3_Canonical_Coding.mzML,Prot_01_reindex_8_Canonical_Coding.mzML,Prot_01_reindex_7_Canonical_Coding.mzML]"/>
+		</ProteinIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="557.293761531900032" RT="4779.399999999999636" spectrum_reference="spectrum=446194" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)FTPGTFTN" charge="2" aa_before="[" aa_after="]" start="0" end="7" protein_refs="PH_42" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="11"/>
+				<UserParam type="string" name="MS:1002259" value="14"/>
+				<UserParam type="string" name="num_matched_peptides" value="2466"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.091"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="628.700000000000046"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="3.23e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="3.23e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="3"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="551.373473531900004" RT="3291.5" spectrum_reference="spectrum=352123" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)AGALALK(TMT6plex)" charge="2" aa_before="[" aa_after="]" start="0" end="6" protein_refs="PH_27" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="11"/>
+				<UserParam type="string" name="MS:1002259" value="12"/>
+				<UserParam type="string" name="num_matched_peptides" value="260"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.109"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="679.399999999999977"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="3.21e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="3.21e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="4"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="704.395446031899951" RT="3316.599999999999909" spectrum_reference="spectrum=25257" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)LC(Carbamidomethyl)QLC(Carbamidomethyl)AGK(TMT6plex)" charge="2" aa_before="[" aa_after="]" start="0" end="7" protein_refs="PH_67" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="14"/>
+				<UserParam type="string" name="MS:1002259" value="14"/>
+				<UserParam type="string" name="num_matched_peptides" value="9578"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.936"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="1014.5"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="4.88e-05"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="4.88e-05"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="5"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="593.420043031900036" RT="8160.899999999999636" spectrum_reference="spectrum=800919" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)IIGAILK(TMT6plex)" charge="2" aa_before="[" aa_after="]" start="0" end="6" protein_refs="PH_41" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="10"/>
+				<UserParam type="string" name="MS:1002259" value="12"/>
+				<UserParam type="string" name="num_matched_peptides" value="34"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.155"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="608.899999999999977"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="1.87e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="1.87e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="6"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="698.92028753189993" RT="7042.899999999999636" spectrum_reference="spectrum=137759" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)QALNFAFK(TMT6plex)" charge="2" aa_before="[" aa_after="]" start="0" end="7" protein_refs="PH_33" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="14"/>
+				<UserParam type="string" name="MS:1002259" value="14"/>
+				<UserParam type="string" name="num_matched_peptides" value="7624"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.392"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="1397.5"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="1.42e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="1.42e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="7"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="520.256408031900037" RT="4258.600000000000364" spectrum_reference="spectrum=852947" >
+			<PeptideHit score="9.174311926605503e-03" sequence=".(TMT6plex)AANFLDC(Carbamidomethyl)" charge="2" aa_before="[" aa_after="]" start="0" end="6" protein_refs="PH_1" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="9"/>
+				<UserParam type="string" name="MS:1002259" value="12"/>
+				<UserParam type="string" name="num_matched_peptides" value="1206"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="1.776"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="457.899999999999977"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="7.420000000000001e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="7.420000000000001e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="8"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="605.820311531899961" RT="7742.0" spectrum_reference="spectrum=880519" >
+			<PeptideHit score="0.0" sequence=".(TMT6plex)ALLYLC(Carbamidomethyl)GGD" charge="2" aa_before="[" aa_after="]" start="0" end="8" protein_refs="PH_44" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="12"/>
+				<UserParam type="string" name="MS:1002259" value="16"/>
+				<UserParam type="string" name="num_matched_peptides" value="4342"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="1.911"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="837.0"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="6.69e-05"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="6.69e-05"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="8"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="553.326232031899963" RT="9761.100000000000364" spectrum_reference="spectrum=895572" >
+			<PeptideHit score="9.174311926605503e-03" sequence=".(TMT6plex)LGLGLEFQ" charge="2" aa_before="[" aa_after="]" start="0" end="7" protein_refs="PH_32" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="12"/>
+				<UserParam type="string" name="MS:1002259" value="14"/>
+				<UserParam type="string" name="num_matched_peptides" value="3466"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="1.744"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="746.600000000000023"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="6.52e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="6.52e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="8"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="442.270873365233285" RT="1234.900000000000091" spectrum_reference="spectrum=498858" >
+			<PeptideHit score="9.174311926605503e-03" sequence=".(TMT6plex)VHDPVTAK(TMT6plex)" charge="3" aa_before="[" aa_after="]" start="0" end="7" protein_refs="PH_34" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="20"/>
+				<UserParam type="string" name="MS:1002259" value="28"/>
+				<UserParam type="string" name="num_matched_peptides" value="6048"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.32"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="1029.099999999999909"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="7.560000000000001e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="7.560000000000001e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="11"/>
+		</PeptideIdentification>
+		<PeptideIdentification score_type="q-value" higher_score_better="false" significance_threshold="0.0" MZ="729.429198531899942" RT="6347.199999999999818" spectrum_reference="spectrum=540687" >
+			<PeptideHit score="9.174311926605503e-03" sequence=".(TMT6plex)NLPLGWDGK(TMT6plex)" charge="2" aa_before="[" aa_after="]" start="0" end="8" protein_refs="PH_38" >
+				<UserParam type="string" name="target_decoy" value="target"/>
+				<UserParam type="string" name="MS:1002258" value="14"/>
+				<UserParam type="string" name="MS:1002259" value="16"/>
+				<UserParam type="string" name="num_matched_peptides" value="7672"/>
+				<UserParam type="int" name="isotope_error" value="0"/>
+				<UserParam type="float" name="MS:1002252" value="2.026"/>
+				<UserParam type="float" name="MS:1002253" value="1.0"/>
+				<UserParam type="float" name="MS:1002254" value="0.0"/>
+				<UserParam type="float" name="MS:1002255" value="867.899999999999977"/>
+				<UserParam type="float" name="MS:1002256" value="1.0"/>
+				<UserParam type="float" name="MS:1002257" value="7.87e-04"/>
+				<UserParam type="string" name="protein_references" value="unique"/>
+				<UserParam type="float" name="expect_score" value="7.87e-04"/>
+			</PeptideHit>
+			<UserParam type="int" name="id_merge_index" value="11"/>
+		</PeptideIdentification>
+	</IdentificationRun>
+</IdXML>

@@ -166,7 +166,7 @@ class ProteinQuantCSV:
                     if summarization:
                         _summary[i] += 1
 
-        if summarization:
+        if summarization and self.records:
             for i, sample in enumerate(self.records[0].header):
                 summary.append((sample, _summary[i]))
 
@@ -244,7 +244,7 @@ class ProteinQuantCSV:
                     if summarization:
                         _summary[i] += 1
 
-        if summarization:
+        if summarization and self.records:
             for i, sample in enumerate(self.records[0].header):
                 summary.append((sample, _summary[i]))
 
@@ -358,5 +358,14 @@ class ProteinQuantCSV:
     def read(cls, handle:IO, format:str):   # pylint: disable=redefined-builtin
         """ Read ProteinQuantCSV """
         metadata = ProteinQuantCSVMetadata.parse(handle)
+        if not metadata.header_map:
+            fieldnames = cls.get_fieldnames(handle, '\t')
+            abundance_headers = fieldnames[4:-1] if format.lower() == 'peptide' else fieldnames[4:]
+            if abundance_headers and all(name.startswith('abundance|') and
+                    '|' in name[len('abundance|'):] for name in abundance_headers):
+                metadata.header_map = {
+                    i: tuple(name[len('abundance|'):].rsplit('|', 1))
+                    for i, name in enumerate(abundance_headers, start=1)
+                }
         records = list(cls.parse(handle, format=format))
         return ProteinQuantCSV(records=records, metadata=metadata)

@@ -1,7 +1,7 @@
 """ Test ConsensusXML MADNormalizer """
 import argparse
 import numpy as np
-from pyopenms import ConsensusMap, ConsensusXMLFile
+from pyopenms import BaseFeature, ColumnHeader, ConsensusFeature, ConsensusMap, ConsensusXMLFile
 from test.integration import IntegrationTestCase
 from msptools import cli
 from msptools.algorithm.MADNormalizer import MADNormalizer
@@ -28,6 +28,46 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         self.assertEqual(normalized[0, 0], 0)
         self.assertTrue(np.isnan(normalized[1, 0]))
         self.assertEqual(normalized[2, 0], 0)
+
+    def test_sparse_channels_keep_reference_and_sample_positions(self):
+        """ Absent handles must not shift ratios into another channel. """
+        cmap = ConsensusMap()
+        headers = {}
+        for index in range(4):
+            header = ColumnHeader()
+            header.filename = 'plex'
+            header.setMetaValue('channel_description',
+                                'reference' if index == 2 else f'sample{index}')
+            headers[index] = header
+        cmap.setColumnHeaders(headers)
+
+        rows = [
+            {0: 100, 2: 200, 3: 500},
+            {0: 160, 2: 200, 3: 400},
+            {0: 130, 2: 200, 3: 600},
+            {0: 190, 2: 200},
+        ]
+        for row in rows:
+            cf = ConsensusFeature()
+            cf.setMetaValue('precursor_intensity', 1000)
+            for index, intensity in row.items():
+                feature = BaseFeature()
+                feature.setIntensity(intensity)
+                cf.insert(index, feature)
+            cmap.push_back(cf)
+
+        normalized = MADNormalizer(cmap).normalize()
+        sample_values = []
+        for original, cf in zip(rows, normalized):
+            intensities = {f.getMapIndex(): f.getIntensity()
+                           for f in cf.getFeatureList()}
+            self.assertEqual(set(intensities), set(original))
+            self.assertEqual(intensities[2], 0)
+            self.assertTrue(np.isfinite(intensities[0]))
+            if 3 in original:
+                self.assertTrue(np.isfinite(intensities[3]))
+                sample_values.append(intensities[3])
+        self.assertTrue(any(value != 0 for value in sample_values))
 
     def test_mad_normalize_case1(self):
         """ Test ConsensusXML MADNormalizer case 1 """

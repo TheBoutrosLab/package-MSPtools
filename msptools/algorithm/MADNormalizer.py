@@ -172,6 +172,10 @@ class MADNormalizer():
         ref_intensities:List[float] = []
         index_map:List[Tuple[str,int]] = []
         reference_validity:Dict[str,List[bool]] = {}
+        column_positions = {
+            plex: {column: pos for pos, column in enumerate(columns)}
+            for plex, columns in self.plex_2_columns.items()
+        }
         cf: ConsensusFeature
         for cf in self.cmap:
             plex, ms2_intensity_ref = self.get_plex_and_ref_intensity(cf)
@@ -179,8 +183,9 @@ class MADNormalizer():
                 reference_validity.setdefault(plex, []).append(
                     bool(np.isfinite(ms2_intensity_ref) and ms2_intensity_ref > self.min_int)
                 )
+            features = cf.getFeatureList()
             intensities = []
-            for f in cf.getFeatureList():
+            for f in features:
                 intensity = f.getIntensity()
                 if intensity > self.min_int:
                     intensities.append(intensity)
@@ -193,10 +198,13 @@ class MADNormalizer():
             else:
                 ref_intensities.append(ms1_intensity * ms2_intensity_ref / ms2_intensity_sum)
             if ms2_intensity_ref == 0:
-                cf_ratios = [0 for _ in cf.getFeatureList()]
+                feature_ratios = [0 for _ in features]
             else:
-                cf_ratios = [i / ms2_intensity_ref for i in intensities]
-            cf_ratios = [np.log2(x) if x != 0 else np.nan for x in cf_ratios]
+                feature_ratios = [i / ms2_intensity_ref for i in intensities]
+            cf_ratios = [np.nan] * len(self.plex_2_columns[plex])
+            for feature, ratio in zip(features, feature_ratios):
+                position = column_positions[plex][feature.getMapIndex()]
+                cf_ratios[position] = np.log2(ratio) if ratio != 0 else np.nan
 
             if plex not in ratios:
                 ratios[plex] = []
@@ -231,13 +239,17 @@ class MADNormalizer():
         """ Create consensus map with the normalized ratios. """
         cmap = ConsensusMap(self.cmap)
         cmap.clear(False)
+        column_positions = {
+            plex: {column: pos for pos, column in enumerate(columns)}
+            for plex, columns in self.plex_2_columns.items()
+        }
         for i, cf in enumerate(self.cmap):
             plex, j = index_map[i]
             cf_ratios = ratios[plex][j]
             ref_int = ref_intensities[i]
             new_cf = ConsensusFeature(cf)
             new_cf.clear()
-            for feature, ratio in zip(cf.getFeatureList(), cf_ratios):
+            for feature in cf.getFeatureList():
                 new_feature = BaseFeature()
                 new_feature.setWidth(feature.getWidth())
                 new_feature.setCharge(feature.getCharge())
@@ -245,6 +257,7 @@ class MADNormalizer():
                 new_feature.setRT(feature.getRT())
 
                 map_index = feature.getMapIndex()
+                ratio = cf_ratios[column_positions[plex][map_index]]
                 new_feature.setIntensity(ratio)
                 new_cf.insert(map_index, new_feature)
             new_cf.setMetaValue('reference_intensity', ref_int)

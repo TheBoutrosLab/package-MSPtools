@@ -6,6 +6,8 @@ All notable changes to MSPtools are documented here.
 
 ### Added
 
+- Add an optional MADNormalizer quasi-intensity output using each feature's reference intensity.
+- Preserve measured zero sample intensities in quasi-intensity output when the reference is valid.
 - Print a MAD normalization tally for processed features, finite sample results, and physical reference states.
 
 ### Fixed

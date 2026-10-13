@@ -49,6 +49,14 @@ def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
         default='median',
         help='The method to calculate virtual reference intensity.'
     )
+    parser.add_argument(
+        '--quasi-intensity',
+        action='store_true',
+        help='Write reference_intensity * 2**normalized_log2_ratio to each output'
+        ' channel instead of the normalized log2 ratio. Measured zero sample'
+        ' intensities remain zero when the reference is valid; other undefined'
+        ' values produce NaN.'
+    )
     parser.set_defaults(func=main)
     common.print_help_if_missing_args(parser)
     return parser
@@ -75,7 +83,8 @@ def main(args:argparse.Namespace):
         cmap=cmap,
         virtual_reference=args.virtual_reference,
         virtual_reference_method=args.virtual_reference_method,
-        min_int=args.min_int
+        min_int=args.min_int,
+        quasi_intensity=args.quasi_intensity
     )
     new_cmap = normalizer.normalize()
 

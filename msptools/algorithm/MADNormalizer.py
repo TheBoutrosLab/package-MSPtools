@@ -52,15 +52,16 @@ class MADNormalizer():
     is the MS2 intensity of the reference channel in plex k for feature j, and
     MS2_k_sum is the sum of MS2 intensity of all channels in plex k for feature j.
 
-    The normalized ratios (RN_ij) are the final normalization result. The
+    The normalized ratios (RN_ij) are the default normalization result. The
     reference intensities (REF_kj) are saved to the output consensusXML file
-    as a meta value of each consensus feature, and can be utilized in protein
-    or peptide quantitation to convert ratio values to the absolute abundance scale.
+    as a meta value of each consensus feature. Optionally, each output handle
+    contains the quasi intensity REF_kj * 2**RN_ij instead of the log2 ratio.
     """
     def __init__(self, cmap:ConsensusMap, virtual_reference:bool=False,
             virtual_reference_method:str='median', min_int:float=1e-08,
             column_2_ref:Dict[int,int]=None, column_2_plex:Dict[int, str]=None,
-            plex_2_column:Dict[str,List[int]]=None):
+            plex_2_column:Dict[str,List[int]]=None,
+            quasi_intensity:bool=False):
         """ constructor """
         self.cmap = cmap
         # column index -> reference channel
@@ -73,6 +74,7 @@ class MADNormalizer():
         self.virtual_reference = virtual_reference
         self.virtual_reference_method = virtual_reference_method
         self.min_int = min_int
+        self.quasi_intensity = quasi_intensity
         self.summary = {}
 
     def get_isobaric_type(self) -> str:
@@ -280,10 +282,19 @@ class MADNormalizer():
 
                 map_index = feature.getMapIndex()
                 ratio = cf_ratios[column_positions[plex][map_index]]
-                if np.isfinite(ratio) and (self.virtual_reference or
+                if self.quasi_intensity:
+                    intensity = np.nan
+                    if np.isfinite(ref_int) and ref_int > 0:
+                        if np.isfinite(ratio):
+                            intensity = ref_int * np.exp2(ratio)
+                        elif feature.getIntensity() == 0:
+                            intensity = 0
+                else:
+                    intensity = ratio
+                if np.isfinite(intensity) and (self.virtual_reference or
                         map_index != self.column_2_ref[map_index]):
                     has_finite_sample = True
-                new_feature.setIntensity(ratio)
+                new_feature.setIntensity(intensity)
                 new_cf.insert(map_index, new_feature)
             if has_finite_sample:
                 self.summary['ConsensusFeatures normalized'] += 1

@@ -53,8 +53,9 @@ def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
         '--quasi-intensity',
         action='store_true',
         help='Write reference_intensity * 2**normalized_log2_ratio to each output'
-        ' channel instead of the normalized log2 ratio. Undefined reference'
-        ' intensities produce NaN.'
+        ' channel instead of the normalized log2 ratio. Measured zero sample'
+        ' intensities remain zero when the reference is valid; other undefined'
+        ' values produce NaN.'
     )
     parser.set_defaults(func=main)
     common.print_help_if_missing_args(parser)

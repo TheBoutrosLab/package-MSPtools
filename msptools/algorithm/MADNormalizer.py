@@ -283,10 +283,12 @@ class MADNormalizer():
                 map_index = feature.getMapIndex()
                 ratio = cf_ratios[column_positions[plex][map_index]]
                 if self.quasi_intensity:
-                    if np.isfinite(ratio) and np.isfinite(ref_int) and ref_int > 0:
-                        intensity = ref_int * np.exp2(ratio)
-                    else:
-                        intensity = np.nan
+                    intensity = np.nan
+                    if np.isfinite(ref_int) and ref_int > 0:
+                        if np.isfinite(ratio):
+                            intensity = ref_int * np.exp2(ratio)
+                        elif feature.getIntensity() == 0:
+                            intensity = 0
                 else:
                     intensity = ratio
                 if np.isfinite(intensity) and (self.virtual_reference or

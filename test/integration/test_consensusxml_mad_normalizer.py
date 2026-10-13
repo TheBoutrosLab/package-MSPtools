@@ -29,6 +29,47 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         self.assertTrue(np.isnan(normalized[1, 0]))
         self.assertEqual(normalized[2, 0], 0)
 
+    def test_absent_physical_reference_handle_stays_absent(self):
+        """ An absent reference handle leaves measured sample ratios undefined. """
+        cmap = ConsensusMap()
+        headers = {}
+        for index, description in [(0, 'reference'), (1, 'sample')]:
+            header = ColumnHeader()
+            header.filename = 'plex'
+            header.setMetaValue('channel_description', description)
+            headers[index] = header
+        cmap.setColumnHeaders(headers)
+
+        for sample_intensity in [100, 200, 400]:
+            cf = ConsensusFeature()
+            cf.setMetaValue('precursor_intensity', 1000)
+            for index, intensity in [(0, 100), (1, sample_intensity)]:
+                feature = BaseFeature()
+                feature.setIntensity(intensity)
+                cf.insert(index, feature)
+            cmap.push_back(cf)
+
+        missing_cf = ConsensusFeature()
+        missing_cf.setMetaValue('precursor_intensity', 1000)
+        sample = BaseFeature()
+        sample.setIntensity(300)
+        missing_cf.insert(1, sample)
+        cmap.push_back(missing_cf)
+
+        normalized = MADNormalizer(cmap).normalize()
+        for cf in list(normalized)[:3]:
+            intensities = {f.getMapIndex(): f.getIntensity()
+                           for f in cf.getFeatureList()}
+            self.assertEqual(intensities[0], 0)
+            self.assertTrue(np.isfinite(intensities[1]))
+
+        missing_output = list(normalized)[-1]
+        features = {f.getMapIndex(): f.getIntensity()
+                    for f in missing_output.getFeatureList()}
+        self.assertEqual(set(features), {1})
+        self.assertTrue(np.isnan(features[1]))
+        self.assertEqual(missing_output.getMetaValue('reference_intensity'), 0)
+
     def test_sparse_channels_keep_reference_and_sample_positions(self):
         """ Absent handles must not shift ratios into another channel. """
         cmap = ConsensusMap()

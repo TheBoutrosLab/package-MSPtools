@@ -160,7 +160,9 @@ class MADNormalizer():
             raise ValueError(f"Non-unique plex found: {plexes}")
         plex = list(plexes)[0]
         ref_index = list(ref_indices)[0]
-        ref_feature = features[ref_index]
+        ref_feature = features.get(ref_index)
+        if ref_feature is None:
+            return plex, 0
         ref_int = ref_feature.getIntensity()
         if ref_int < self.min_int:
             ref_int = 0

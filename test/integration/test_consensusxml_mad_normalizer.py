@@ -1,5 +1,7 @@
 """ Test ConsensusXML MADNormalizer """
 import argparse
+from contextlib import redirect_stdout
+from io import StringIO
 import numpy as np
 from pyopenms import BaseFeature, ColumnHeader, ConsensusFeature, ConsensusMap, ConsensusXMLFile
 from test.integration import IntegrationTestCase
@@ -49,6 +51,15 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                 cf.insert(index, feature)
             cmap.push_back(cf)
 
+        for ref_intensity in [0, 1e-9, np.nan]:
+            cf = ConsensusFeature()
+            cf.setMetaValue('precursor_intensity', 1000)
+            for index, intensity in [(0, ref_intensity), (1, 300)]:
+                feature = BaseFeature()
+                feature.setIntensity(intensity)
+                cf.insert(index, feature)
+            cmap.push_back(cf)
+
         missing_cf = ConsensusFeature()
         missing_cf.setMetaValue('precursor_intensity', 1000)
         sample = BaseFeature()
@@ -56,7 +67,8 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         missing_cf.insert(1, sample)
         cmap.push_back(missing_cf)
 
-        normalized = MADNormalizer(cmap).normalize()
+        normalizer = MADNormalizer(cmap)
+        normalized = normalizer.normalize()
         for cf in list(normalized)[:3]:
             intensities = {f.getMapIndex(): f.getIntensity()
                            for f in cf.getFeatureList()}
@@ -69,6 +81,15 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         self.assertEqual(set(features), {1})
         self.assertTrue(np.isnan(features[1]))
         self.assertEqual(missing_output.getMetaValue('reference_intensity'), 0)
+
+        summary = normalizer.summary
+        self.assertEqual(summary['ConsensusFeatures processed'], 7)
+        self.assertEqual(summary['ConsensusFeatures normalized'], 3)
+        self.assertEqual(summary['Valid physical references'], 3)
+        self.assertEqual(summary['Missing reference handles'], 1)
+        self.assertEqual(summary['Zero reference intensities'], 1)
+        self.assertEqual(summary['Other references at or below min_int'], 1)
+        self.assertEqual(summary['Non-finite reference intensities'], 1)
 
     def test_sparse_channels_keep_reference_and_sample_positions(self):
         """ Absent handles must not shift ratios into another channel. """
@@ -114,7 +135,12 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         """ Test ConsensusXML MADNormalizer case 1 """
         args = self.create_base_args()
         args.input_path = 'test/files/MADNormalizer_1_input.consensusXML'
-        cli.ConsensusXML.mad_normalizer.main(args)
+        output = StringIO()
+        with redirect_stdout(output):
+            cli.ConsensusXML.mad_normalizer.main(args)
+        self.assertIn('MAD normalization tally', output.getvalue())
+        self.assertRegex(output.getvalue(), r'ConsensusFeatures processed\s+5')
+        self.assertRegex(output.getvalue(), r'ConsensusFeatures normalized\s+5')
 
         original = ConsensusMap()
         normalized = ConsensusMap()

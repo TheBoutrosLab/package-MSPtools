@@ -73,6 +73,7 @@ class MADNormalizer():
         self.virtual_reference = virtual_reference
         self.virtual_reference_method = virtual_reference_method
         self.min_int = min_int
+        self.summary = {}
 
     def get_isobaric_type(self) -> str:
         """ Get isobaric experiment type """
@@ -181,7 +182,25 @@ class MADNormalizer():
         cf: ConsensusFeature
         for cf in self.cmap:
             plex, ms2_intensity_ref = self.get_plex_and_ref_intensity(cf)
+            self.summary['ConsensusFeatures processed'] += 1
             if not self.virtual_reference:
+                features = cf.getFeatureList()
+                ref_index = self.column_2_ref[features[0].getMapIndex()]
+                ref_feature = next((feature for feature in features
+                                    if feature.getMapIndex() == ref_index), None)
+                if ref_feature is None:
+                    state = 'Missing reference handles'
+                else:
+                    raw_ref = ref_feature.getIntensity()
+                    if not np.isfinite(raw_ref):
+                        state = 'Non-finite reference intensities'
+                    elif raw_ref == 0:
+                        state = 'Zero reference intensities'
+                    elif raw_ref <= self.min_int:
+                        state = 'Other references at or below min_int'
+                    else:
+                        state = 'Valid physical references'
+                self.summary[state] += 1
                 reference_validity.setdefault(plex, []).append(
                     bool(np.isfinite(ms2_intensity_ref) and ms2_intensity_ref > self.min_int)
                 )
@@ -251,6 +270,7 @@ class MADNormalizer():
             ref_int = ref_intensities[i]
             new_cf = ConsensusFeature(cf)
             new_cf.clear()
+            has_finite_sample = False
             for feature in cf.getFeatureList():
                 new_feature = BaseFeature()
                 new_feature.setWidth(feature.getWidth())
@@ -260,8 +280,13 @@ class MADNormalizer():
 
                 map_index = feature.getMapIndex()
                 ratio = cf_ratios[column_positions[plex][map_index]]
+                if np.isfinite(ratio) and (self.virtual_reference or
+                        map_index != self.column_2_ref[map_index]):
+                    has_finite_sample = True
                 new_feature.setIntensity(ratio)
                 new_cf.insert(map_index, new_feature)
+            if has_finite_sample:
+                self.summary['ConsensusFeatures normalized'] += 1
             new_cf.setMetaValue('reference_intensity', ref_int)
             cmap.push_back(new_cf)
         cmap.ensureUniqueId()
@@ -270,6 +295,20 @@ class MADNormalizer():
     def normalize(self):
         """ Conduct MAD normalization. """
         self.set_channel_plex()
+        self.summary = {
+            'ConsensusMaps processed': 1,
+            'ConsensusMaps normalized': 1,
+            'ConsensusFeatures processed': 0,
+            'ConsensusFeatures normalized': 0,
+        }
+        if not self.virtual_reference:
+            self.summary.update({
+                'Valid physical references': 0,
+                'Missing reference handles': 0,
+                'Zero reference intensities': 0,
+                'Other references at or below min_int': 0,
+                'Non-finite reference intensities': 0,
+            })
 
         # Sep 1: Get log2 ratios for each channel of each feature.
         ratios, ref_intensities, index_map, reference_validity = self.collect_ratios()

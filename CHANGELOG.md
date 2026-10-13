@@ -4,6 +4,14 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Print a MAD normalization tally for processed features, finite sample results, and physical reference states.
+
+### Fixed
+
+- Preserve physical reference channels as zero log2 ratios during MAD normalization instead of turning them into missing values.
+
 ## [1.0.1] - 2026-10-12
 
 ### Fixed

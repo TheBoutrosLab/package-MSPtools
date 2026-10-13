@@ -19,6 +19,7 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         args.min_int = 1e-08
         args.virtual_reference = False
         args.virtual_reference_method = 'median'
+        args.quasi_intensity = False
         return args
 
     def test_missing_physical_reference_stays_missing(self):
@@ -168,3 +169,65 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         ConsensusXMLFile().load(args.output_path, normalized)
         self.assertTrue(all(np.isfinite(f.getIntensity()) for cf in normalized
                             for f in cf.getFeatureList()))
+
+    def test_quasi_intensity_matches_reference_scaled_ratios(self):
+        """ The optional output uses each feature's own reference estimate. """
+        args = self.create_base_args()
+        args.input_path = 'test/files/MADNormalizer_1_input.consensusXML'
+        cli.ConsensusXML.mad_normalizer.main(args)
+        ratios = ConsensusMap()
+        ConsensusXMLFile().load(args.output_path, ratios)
+
+        args.quasi_intensity = True
+        cli.ConsensusXML.mad_normalizer.main(args)
+        abundances = ConsensusMap()
+        ConsensusXMLFile().load(args.output_path, abundances)
+
+        for ratio_cf, abundance_cf in zip(ratios, abundances):
+            ref_int = ratio_cf.getMetaValue('reference_intensity')
+            self.assertGreater(ref_int, 0)
+            self.assertAlmostEqual(
+                abundance_cf.getMetaValue('reference_intensity'), ref_int
+            )
+            ratio_handles = {f.getMapIndex(): f.getIntensity()
+                             for f in ratio_cf.getFeatureList()}
+            for handle in abundance_cf.getFeatureList():
+                expected = ref_int * np.exp2(ratio_handles[handle.getMapIndex()])
+                self.assertAlmostEqual(handle.getIntensity(), expected,
+                                       delta=expected * 1e-5)
+
+    def test_quasi_intensity_requires_valid_reference(self):
+        """ Missing or zero reference estimates cannot yield abundances. """
+        cmap = ConsensusMap()
+        headers = {}
+        for index, description in [(0, 'reference'), (1, 'sample')]:
+            header = ColumnHeader()
+            header.filename = 'plex'
+            header.setMetaValue('channel_description', description)
+            headers[index] = header
+        cmap.setColumnHeaders(headers)
+        for ref, sample in [(100, 100), (100, 200), (100, 400), (0, 300)]:
+            cf = ConsensusFeature()
+            cf.setMetaValue('precursor_intensity', 1000)
+            for index, intensity in [(0, ref), (1, sample)]:
+                feature = BaseFeature()
+                feature.setIntensity(intensity)
+                cf.insert(index, feature)
+            cmap.push_back(cf)
+        result = MADNormalizer(cmap, quasi_intensity=True).normalize()
+        self.assertTrue(all(np.isfinite(f.getIntensity()) for cf in list(result)[:3]
+                            for f in cf.getFeatureList()))
+        self.assertTrue(all(np.isnan(f.getIntensity()) for f in list(result)[-1]
+                            .getFeatureList()))
+
+    def test_quasi_intensity_with_virtual_reference(self):
+        """ Virtual references can also produce quasi intensities. """
+        args = self.create_base_args()
+        args.input_path = 'test/files/MADNormalizer_1_input.consensusXML'
+        args.virtual_reference = True
+        args.quasi_intensity = True
+        cli.ConsensusXML.mad_normalizer.main(args)
+        output = ConsensusMap()
+        ConsensusXMLFile().load(args.output_path, output)
+        self.assertTrue(all(np.isfinite(f.getIntensity()) and f.getIntensity() > 0
+                            for cf in output for f in cf.getFeatureList()))

@@ -171,9 +171,14 @@ class MADNormalizer():
         ratios:Dict[List[List[float]]] = {}
         ref_intensities:List[float] = []
         index_map:List[Tuple[str,int]] = []
+        reference_validity:Dict[str,List[bool]] = {}
         cf: ConsensusFeature
         for cf in self.cmap:
             plex, ms2_intensity_ref = self.get_plex_and_ref_intensity(cf)
+            if not self.virtual_reference:
+                reference_validity.setdefault(plex, []).append(
+                    bool(np.isfinite(ms2_intensity_ref) and ms2_intensity_ref > self.min_int)
+                )
             intensities = []
             for f in cf.getFeatureList():
                 intensity = f.getIntensity()
@@ -198,19 +203,29 @@ class MADNormalizer():
             ratios[plex].append(cf_ratios)
             index_map.append((plex, len(ratios[plex]) - 1))
         ratios_np = {k:np.array(v, dtype=np.float64) for k,v in ratios.items()}
-        return ratios_np, ref_intensities, index_map
+        return ratios_np, ref_intensities, index_map, reference_validity
 
     @staticmethod
-    def normalize_mad(ratios):
-        """ Perform MAD normalization """
-        m_i = {k:np.ma.median(np.ma.masked_invalid(v), axis = 0) for k,v in ratios.items()}
+    def normalize_mad(ratios, reference_columns:dict[str, int]=None,
+            reference_validity:Dict[str,List[bool]]=None):
+        """ Perform MAD normalization, excluding physical reference channels. """
+        reference_columns = reference_columns or {}
+        reference_validity = reference_validity or {}
+        masked_ratios = {k:np.ma.masked_invalid(v.copy()) for k,v in ratios.items()}
+        for plex, column in reference_columns.items():
+            masked_ratios[plex][:, column] = np.ma.masked
+
+        m_i = {k:np.ma.median(v, axis=0) for k,v in masked_ratios.items()}
         m_0 = np.ma.median(np.ma.masked_invalid(np.ma.concatenate(m_i.values())))
-        ratios = {k:v-m_i[k] for k,v in ratios.items()}
+        centered = {k:v-m_i[k] for k,v in masked_ratios.items()}
         mad_i = {k:np.ma.median(np.ma.masked_invalid(np.absolute(v)), axis = 0)
-                 for k,v in ratios.items()}
+                 for k,v in centered.items()}
         mad_0 = np.ma.median(np.ma.masked_invalid(np.ma.concatenate(mad_i.values())))
-        ratios = {k:(v / mad_i[k]) * mad_0 + m_0 for k,v in ratios.items()}
-        return ratios
+        normalized = {k:((v / mad_i[k]) * mad_0 + m_0).filled(np.nan)
+                      for k,v in centered.items()}
+        for plex, column in reference_columns.items():
+            normalized[plex][:, column] = np.where(reference_validity[plex], 0.0, np.nan)
+        return normalized
 
     def create_consensus_map(self, ratios, ref_intensities, index_map):
         """ Create consensus map with the normalized ratios. """
@@ -242,10 +257,14 @@ class MADNormalizer():
         self.set_channel_plex()
 
         # Sep 1: Get log2 ratios for each channel of each feature.
-        ratios, ref_intensities, index_map = self.collect_ratios()
+        ratios, ref_intensities, index_map, reference_validity = self.collect_ratios()
 
         # Step 2: MAD normalization
-        ratios = self.normalize_mad(ratios)
+        reference_columns:dict[str, int] = {}
+        if not self.virtual_reference:
+            for plex, columns in self.plex_2_columns.items():
+                reference_columns[plex] = columns.index(self.column_2_ref[columns[0]])
+        ratios = self.normalize_mad(ratios, reference_columns, reference_validity)
 
         # Step 3: Put together a normalized ConsensusMap
         cmap = self.create_consensus_map(ratios, ref_intensities, index_map)

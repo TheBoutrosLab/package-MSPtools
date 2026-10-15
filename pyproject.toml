@@ -48,7 +48,7 @@ path = "msptools/__init__.py"
 [project.optional-dependencies]
 dev-dependencies = [
     "pytest>=8,<10",
-    "pytest-cov>=5,<8",
+    "pytest-cov>=7.1.0,<8",
 ]
 
 [tool.pyright]

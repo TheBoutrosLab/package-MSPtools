@@ -142,7 +142,7 @@ class ProteinQuantCSV:
 
             peptide:AASequence = hits[0].getSequence()
             seq = peptide.toString()
-            charge = cf.getCharge()
+            charge = hits[0].getCharge()
 
             cur = peptide_map.setdefault(seq, {})
             cur = cur.setdefault(charge, set())
@@ -151,11 +151,17 @@ class ProteinQuantCSV:
         # Now fix the intensities
         record:PeptideQuantRecord
         for record in self.records:
+            quantified_channels = peptide_map.get(record.peptide, {}).get(record.charge)
             for i, intensity in enumerate(record.abundance):
                 plex_channels = plex2channel[channel2plex[i]]
                 if all(np.isnan(record.abundance[x]) for x in plex_channels):
                     continue
-                if i not in peptide_map[record.peptide][record.charge]:
+                if quantified_channels is None:
+                    raise ValueError(
+                        'No peptide/charge mapping found in consensusXML file:'
+                        f' sequence: {record.peptide}, charge: {record.charge}'
+                    )
+                if i not in quantified_channels:
                     if check_intensity and intensity != 0:
                         raise ValueError(
                             "Peptide has non-zero intensity value in ProteinQuantCSV"

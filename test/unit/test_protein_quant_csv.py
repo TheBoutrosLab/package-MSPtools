@@ -2,11 +2,83 @@
 from unittest import TestCase
 from io import StringIO
 import numpy as np
-from msptools.ProteinQuantCSV.ProteinQuantCSV import ProteinQuantCSV
+from pyopenms import (
+    AASequence, BaseFeature, ConsensusFeature, ConsensusMap, PeptideHit,
+    PeptideIdentification
+)
+from msptools.ProteinQuantCSV.ProteinQuantCSV import ProteinQuantCSV, PeptideQuantRecord
 from msptools.ProteinQuantCSV.ProteinQuantCSVMetadata import ProteinQuantCSVMetadata
 
 class TestProteinQuantCSV(TestCase):
     """ Test cases for ProteinQuantCSV """
+    @staticmethod
+    def peptide_charge_map():
+        """ A feature and its identification can have different charges. """
+        cmap = ConsensusMap()
+        cf = ConsensusFeature()
+        cf.setCharge(3)
+        hit = PeptideHit()
+        hit.setSequence(AASequence.fromString('PEPTIDEK'))
+        hit.setCharge(2)
+        identification = PeptideIdentification()
+        identification.setHits([hit])
+        cf.setPeptideIdentifications([identification])
+        feature = BaseFeature()
+        feature.setIntensity(10)
+        cf.insert(0, feature)
+        cmap.push_back(cf)
+        return cmap
+
+    @staticmethod
+    def peptide_quant_record(charge, abundance):
+        """ Construct one peptide row with two channels in the same plex. """
+        return PeptideQuantRecord(
+            abundance=abundance, header=['ch0', 'ch1'], peptide='PEPTIDEK',
+            protein='P1', n_proteins=1, charge=charge, fraction='plex'
+        )
+
+    def test_remove_unquantified_peptides_uses_identified_hit_charge(self):
+        """ Keep quantified abundance when only the peptide-hit charge matches. """
+        record = self.peptide_quant_record(2, [10, 0])
+        quant = ProteinQuantCSV(
+            records=[record],
+            metadata=ProteinQuantCSVMetadata(
+                header_map={1: ('plex', 'ch0'), 2: ('plex', 'ch1')}
+            )
+        )
+        summary = []
+        quant.remove_unquantified_peptides(self.peptide_charge_map(), summary)
+        self.assertEqual(record.abundance[0], 10)
+        self.assertTrue(np.isnan(record.abundance[1]))
+        self.assertEqual(summary, [('ch0', 0), ('ch1', 1)])
+
+    def test_remove_unquantified_peptides_reports_missing_mapping(self):
+        for peptide, charge in [('PEPTIDEK', 4), ('UNKNOWN', 2)]:
+            record = self.peptide_quant_record(charge, [10, 0])
+            record.peptide = peptide
+            quant = ProteinQuantCSV(
+                records=[record],
+                metadata=ProteinQuantCSVMetadata(
+                    header_map={1: ('plex', 'ch0'), 2: ('plex', 'ch1')}
+                )
+            )
+            with self.subTest(peptide=peptide, charge=charge):
+                with self.assertRaisesRegex(ValueError,
+                        f'No peptide/charge mapping found.*{peptide}, charge: {charge}'):
+                    quant.remove_unquantified_peptides(self.peptide_charge_map())
+
+    def test_remove_unquantified_peptides_checks_nonzero_unquantified_channel(self):
+        record = self.peptide_quant_record(2, [10, 5])
+        quant = ProteinQuantCSV(
+            records=[record],
+            metadata=ProteinQuantCSVMetadata(
+                header_map={1: ('plex', 'ch0'), 2: ('plex', 'ch1')}
+            )
+        )
+        with self.assertRaisesRegex(ValueError,
+                'non-zero intensity value.*PEPTIDEK, charge: 2'):
+            quant.remove_unquantified_peptides(self.peptide_charge_map())
+
     def test_protein_metadata_origin_prefix(self):
         """ Preserve the protein abundance prefix when rewriting metadata. """
         with open('test/files/test_protein_quant_csv_reheader_csv_1.csv', 'rt') as handle:

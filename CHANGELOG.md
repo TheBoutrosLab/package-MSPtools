@@ -4,6 +4,10 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- Match fixZeroPlex peptide CSV charges to identified peptide hits and report missing mappings clearly.
+
 ## [1.0.2] - 2026-10-13
 
 ### Added

@@ -33,7 +33,11 @@ value. Normalized areas are written to output handles, with the scaled reference
 area in `normalized_reference_intensity::<plex_id>`. The physical reference is
 selected separately in each plex from the column header whose
 `channel_description` is `reference`. Virtual references are also calculated
-separately per plex.
+separately per plex. `--virtual-reference-min-channels` sets the minimum number
+of finite channels above `--min-int` required within each feature and plex
+(default: `1`). A single observed channel can serve as its own virtual
+reference. With virtual bridge scaling, singleton references make
+the factors more sensitive to which samples were observed.
 
 `--quasi-intensity` converts normalized log2 ratios to areas. For linked maps,
 `--bridge-scale` additionally aligns each plex's median reference area using

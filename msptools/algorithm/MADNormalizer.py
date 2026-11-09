@@ -287,27 +287,23 @@ class MADNormalizer():
         return normalized
 
     def calculate_bridge_factors(self, ref_intensities):
-        """ Estimate symmetric per-plex scales from matched reference areas. """
+        """ Align each plex's median of all valid reference areas. """
         plexes = list(self.plex_2_columns)
-        matched = [i for i in range(self.cmap.size())
-                   if all((i, plex) in ref_intensities
-                          and np.isfinite(ref_intensities[i, plex])
-                          and ref_intensities[i, plex] > 0 for plex in plexes)]
-        if self.bridge_scale and not matched:
-            raise ValueError('Cannot bridge-scale: no feature has a valid reference area '
-                             'in every plex')
         medians = {}
+        counts = {}
         for plex in plexes:
-            values = ([ref_intensities[i, plex] for i in matched] if matched else
-                      [area for (i, p), area in ref_intensities.items()
-                       if p == plex and np.isfinite(area) and area > 0])
+            values = [area for (_, area_plex), area in ref_intensities.items()
+                      if area_plex == plex and np.isfinite(area) and area > 0]
+            counts[plex] = len(values)
+            if self.bridge_scale and not values:
+                raise ValueError(f'Cannot bridge-scale: no valid reference area for plex {plex}')
             medians[plex] = float(np.median(values)) if values else np.nan
         valid_medians = [value for value in medians.values() if np.isfinite(value)]
         target = float(np.median(valid_medians)) if valid_medians else np.nan
         factors = {plex: target / medians[plex] if self.bridge_scale else 1.0
                    for plex in plexes}
         self.scaling_report = [
-            {'plex_id': plex, 'matched_feature_count': len(matched),
+            {'plex_id': plex, 'reference_feature_count': counts[plex],
              'median_reference_area': medians[plex], 'target_reference_area': target,
              'plex_scale_factor': factors[plex]}
             for plex in plexes

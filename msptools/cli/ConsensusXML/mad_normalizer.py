@@ -65,8 +65,8 @@ def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
     )
     parser.add_argument(
         '--bridge-scale', action='store_true',
-        help='Scale linked quasi-intensities across plexes using matched'
-        ' positive reference areas.'
+        help='Scale linked quasi-intensities so each plex has the same median'
+        ' across all its positive, finite reference areas.'
     )
     parser.add_argument(
         '--allow-virtual-bridge', action='store_true',
@@ -127,7 +127,7 @@ def main(args:argparse.Namespace):
     ConsensusXMLFile().store(args.output_path, new_cmap)
     print_summary(normalizer.summary)
     for row in normalizer.scaling_report:
-        logger(f"Plex {row['plex_id']}: matched={row['matched_feature_count']}, "
+        logger(f"Plex {row['plex_id']}: valid references={row['reference_feature_count']}, "
                f"median reference area={row['median_reference_area']}, "
                f"target={row['target_reference_area']}, "
                f"scale={row['plex_scale_factor']}")

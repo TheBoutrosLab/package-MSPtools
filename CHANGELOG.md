@@ -6,7 +6,11 @@ All notable changes to MSPtools are documented here.
 
 ### Added
 
-- Normalize merged scan and linked multi-plex TMT maps, with optional matched-feature bridge scaling and a per-plex report.
+- Normalize merged scan and linked multi-plex TMT maps, with optional per-plex median reference-area scaling and a report.
+
+### Changed
+
+- Store linked-output reference intensities as `reference_intensity::<plex_id>`; retain the unsuffixed `reference_intensity` only for features containing one plex. Readers of multi-plex output must use the plex-specific key.
 
 ### Fixed
 

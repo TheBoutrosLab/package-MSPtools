@@ -59,9 +59,10 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                     cf.setMetaValue('precursor_intensity', 1000)
                 else:
                     for plex in ('A', 'B'):
-                        if any(index // 2 == ('A', 'B').index(plex)
-                               for index in plex_values):
-                            cf.setMetaValue(f'tmt_ms1_area::{plex}', 1000)
+                        area = sum(intensity for index, intensity in plex_values.items()
+                                   if index // 2 == ('A', 'B').index(plex))
+                        if area:
+                            cf.setMetaValue(f'tmt_ms1_area::{plex}', area)
                 hit = PeptideHit()
                 hit.setSequence(AASequence.fromString('PEPTIDEK'))
                 identification = PeptideIdentification()
@@ -352,7 +353,7 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                                np.median(sample_ratios['B']), places=5)
 
     def test_linked_bridge_scales_areas_and_preserves_ids(self):
-        """ Matched reference areas set symmetric factors for every feature. """
+        """ Per-plex reference medians set symmetric factors for every feature. """
         cmap = self.make_merged_map()
         ratios = MADNormalizer(cmap, layout='linked').normalize()
         normalizer = MADNormalizer(cmap, layout='linked', quasi_intensity=True,
@@ -360,12 +361,16 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         output = normalizer.normalize()
         self.assertEqual([row['plex_scale_factor'] for row in normalizer.scaling_report],
                          [1.5, 0.75])
-        self.assertEqual([row['matched_feature_count'] for row in normalizer.scaling_report],
-                         [3, 3])
+        self.assertEqual([row['reference_feature_count'] for row in normalizer.scaling_report],
+                         [4, 4])
         for source, ratio_cf, result in zip(cmap, ratios, output):
             self.assertEqual(source.getUniqueId(), result.getUniqueId())
             self.assertEqual(source.getMetaValue('tmt_fraction_id'),
                              result.getMetaValue('tmt_fraction_id'))
+            for plex in ('A', 'B'):
+                key = f'tmt_ms1_area::{plex}'
+                if source.metaValueExists(key):
+                    self.assertEqual(source.getMetaValue(key), result.getMetaValue(key))
             self.assertEqual(len(result.getPeptideIdentifications()), 1)
             raw = {h.getMapIndex(): h for h in source.getFeatureList()}
             ratio_values = {h.getMapIndex(): h.getIntensity()
@@ -393,7 +398,7 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                             and cf.getMetaValue('custom_metadata') == 'preserve_me'
                             for cf in reloaded))
 
-    def test_bridge_restrictions_and_missing_overlap(self):
+    def test_bridge_restrictions_and_missing_plex_reference(self):
         cmap = self.make_merged_map()
         with self.assertRaisesRegex(ValueError, 'requires linked layout'):
             MADNormalizer(cmap, quasi_intensity=True, bridge_scale=True).normalize()
@@ -406,9 +411,65 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         cmap_only_unmatched.setColumnHeaders(cmap.getColumnHeaders())
         for cf in list(cmap)[3:]:
             cmap_only_unmatched.push_back(cf)
-        with self.assertRaisesRegex(ValueError, 'no feature'):
+        normalizer = MADNormalizer(cmap_only_unmatched, layout='linked',
+                                   quasi_intensity=True, bridge_scale=True)
+        normalizer.normalize()
+        self.assertEqual([row['reference_feature_count'] for row in normalizer.scaling_report],
+                         [1, 1])
+
+        headers = cmap_only_unmatched.getColumnHeaders()
+        for index, description in [(4, 'reference'), (5, 'sample')]:
+            header = ColumnHeader()
+            header.filename = 'C'
+            header.label = str(index)
+            header.setMetaValue('channel_description', description)
+            headers[index] = header
+        cmap_only_unmatched.setColumnHeaders(headers)
+        with self.assertRaisesRegex(ValueError, 'no valid reference area for plex C'):
             MADNormalizer(cmap_only_unmatched, layout='linked',
                           quasi_intensity=True, bridge_scale=True).normalize()
+
+    def test_bridge_uses_partial_overlaps_across_three_plexes(self):
+        """ A-B and B-C overlaps suffice without an A-B-C feature. """
+        cmap = ConsensusMap()
+        headers = {}
+        for index, plex in enumerate(('A', 'A', 'B', 'B', 'C', 'C')):
+            header = ColumnHeader()
+            header.filename = plex
+            header.label = str(index)
+            header.setMetaValue('channel_description',
+                                'reference' if index % 2 == 0 else 'sample')
+            headers[index] = header
+        cmap.setColumnHeaders(headers)
+        rows = [
+            {0: 100, 1: 150, 2: 200, 3: 300},
+            {0: 120, 1: 240, 2: 240, 3: 360},
+            {2: 180, 3: 270, 4: 360, 5: 540},
+            {2: 160, 3: 80, 4: 320, 5: 160},
+        ]
+        for row in rows:
+            cf = ConsensusFeature()
+            for plex, first_index in [('A', 0), ('B', 2), ('C', 4)]:
+                if first_index in row:
+                    cf.setMetaValue(f'tmt_ms1_area::{plex}',
+                                    row[first_index] + row[first_index + 1])
+            for index, intensity in row.items():
+                handle = BaseFeature()
+                handle.setIntensity(intensity)
+                cf.insert(index, handle)
+            cmap.push_back(cf)
+        normalizer = MADNormalizer(cmap, layout='linked', quasi_intensity=True,
+                                   bridge_scale=True)
+        output = normalizer.normalize()
+        self.assertEqual(output.size(), len(rows))
+        self.assertEqual([item['reference_feature_count']
+                          for item in normalizer.scaling_report], [2, 4, 2])
+        self.assertEqual([item['median_reference_area']
+                          for item in normalizer.scaling_report], [110, 190, 340])
+        self.assertTrue(np.allclose(
+            [item['plex_scale_factor'] for item in normalizer.scaling_report],
+            [190 / 110, 1, 190 / 340]
+        ))
 
     def test_virtual_bridge_requires_and_respects_opt_in(self):
         """ Virtual bridge uses per-plex medians only when explicitly allowed. """
@@ -422,7 +483,7 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         self.assertEqual([row['plex_scale_factor'] for row in normalizer.scaling_report],
                          [1.5, 0.75])
         self.assertTrue((self.work_dir/'scaling.tsv').read_text().startswith(
-            'plex_id\tmatched_feature_count\tmedian_reference_area'))
+            'plex_id\treference_feature_count\tmedian_reference_area'))
 
     def test_linked_missing_and_invalid_references_are_per_plex(self):
         """ An invalid A reference leaves the valid B group usable. """
@@ -433,8 +494,12 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         for index, (values, _) in enumerate(examples, start=200):
             cf = ConsensusFeature()
             cf.setUniqueId(index)
-            cf.setMetaValue('tmt_ms1_area::A', 1000)
-            cf.setMetaValue('tmt_ms1_area::B', 1000)
+            cf.setMetaValue('tmt_ms1_area::A',
+                            sum(value for map_index, value in values.items()
+                                if map_index < 2 and np.isfinite(value)))
+            cf.setMetaValue('tmt_ms1_area::B',
+                            sum(value for map_index, value in values.items()
+                                if map_index >= 2 and np.isfinite(value)))
             for map_index, intensity in values.items():
                 handle = BaseFeature()
                 handle.setUniqueId(index * 10 + map_index)
@@ -525,6 +590,14 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         linked[0] = first
         with self.assertRaisesRegex(ValueError, 'invalid tmt_ms1_area::A'):
             MADNormalizer(linked, layout='linked').normalize()
+
+        first.setMetaValue('tmt_ms1_area::A', 5)
+        linked[0] = first
+        expected = MADNormalizer(self.make_merged_map(), layout='linked').normalize()
+        output = MADNormalizer(linked, layout='linked').normalize()
+        self.assertEqual(output[0].getMetaValue('tmt_ms1_area::A'), 5)
+        self.assertEqual([h.getIntensity() for h in output[0].getFeatureList()],
+                         [h.getIntensity() for h in expected[0].getFeatureList()])
 
     def test_scaling_report_cannot_replace_consensusxml(self):
         """ Reject both path collisions before opening either output. """

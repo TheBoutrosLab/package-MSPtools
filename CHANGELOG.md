@@ -4,6 +4,10 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Allow MADNormalizer virtual references from a configurable minimum number of observed channels, defaulting to one.
+
 ## [1.1.0] - 2026-11-08
 
 ### Added

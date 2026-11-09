@@ -78,6 +78,42 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                 cmap.push_back(cf)
         return cmap
 
+    @staticmethod
+    def make_sparse_virtual_map(layout='linked'):
+        """ Two plexes with singleton, missing, and multi-channel groups. """
+        cmap = ConsensusMap()
+        headers = {}
+        for index, plex in enumerate(('A', 'A', 'B', 'B')):
+            header = ColumnHeader()
+            header.filename = plex
+            header.label = str(index)
+            headers[index] = header
+        cmap.setColumnHeaders(headers)
+        rows = [
+            {0: 100, 1: 0, 2: 200, 3: 0},
+            {0: 0, 1: 0, 2: 0, 3: 0},
+            {0: 100, 1: 300, 2: 200, 3: 600},
+        ]
+        for row in rows:
+            groups = [row] if layout == 'linked' else [
+                {index: row[index] for index in indices}
+                for indices in ((0, 1), (2, 3))
+            ]
+            for group in groups:
+                cf = ConsensusFeature()
+                if layout == 'scan':
+                    cf.setMetaValue('precursor_intensity', 1000)
+                else:
+                    for plex, indices in (('A', (0, 1)), ('B', (2, 3))):
+                        cf.setMetaValue(f'tmt_ms1_area::{plex}',
+                                        sum(group[index] for index in indices))
+                for index, intensity in group.items():
+                    handle = BaseFeature()
+                    handle.setIntensity(intensity)
+                    cf.insert(index, handle)
+                cmap.push_back(cf)
+        return cmap
+
     def create_base_args(self) -> argparse.Namespace:
         """ Create base arguments """
         args = argparse.Namespace()
@@ -86,6 +122,7 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
         args.min_int = 1e-08
         args.virtual_reference = False
         args.virtual_reference_method = 'median'
+        args.virtual_reference_min_channels = 1
         args.quasi_intensity = False
         args.layout = 'scan'
         args.bridge_scale = False
@@ -484,6 +521,108 @@ class TestConsensusXMLMADNormalizer(IntegrationTestCase):
                          [1.5, 0.75])
         self.assertTrue((self.work_dir/'scaling.tsv').read_text().startswith(
             'plex_id\treference_feature_count\tmedian_reference_area'))
+
+    def test_virtual_reference_channel_threshold_in_both_layouts(self):
+        """ A singleton is usable at one; empty groups remain undefined. """
+        for layout in ('scan', 'linked'):
+            cmap = self.make_sparse_virtual_map(layout)
+            for minimum in (1, 2, 3):
+                with self.subTest(layout=layout, minimum=minimum):
+                    normalizer = MADNormalizer(
+                        cmap, layout=layout, virtual_reference=True,
+                        virtual_reference_min_channels=minimum,
+                        quasi_intensity=True)
+                    output = normalizer.normalize()
+                    first_a = output[0]
+                    first_b = output[0 if layout == 'linked' else 1]
+                    for cf, plex, index in ((first_a, 'A', 0), (first_b, 'B', 2)):
+                        expected = (100 if plex == 'A' else 200) if minimum == 1 else 0
+                        if layout == 'scan' and minimum == 1:
+                            expected = 1000
+                        self.assertEqual(cf.getMetaValue(f'reference_intensity::{plex}'),
+                                         expected)
+                        value = next(h.getIntensity() for h in cf.getFeatureList()
+                                     if h.getMapIndex() == index)
+                        self.assertEqual(np.isfinite(value), minimum == 1)
+                    missing = output[1 if layout == 'linked' else 2]
+                    self.assertTrue(all(np.isnan(h.getIntensity())
+                                        for h in missing.getFeatureList()))
+                    multi = output[2 if layout == 'linked' else 4]
+                    self.assertEqual(multi.getMetaValue('reference_intensity::A'),
+                                     (200 if layout == 'linked' else 500)
+                                     if minimum <= 2 else 0)
+                    if minimum == 1:
+                        raw_ratios, _, _, _ = normalizer.collect_ratios()
+                        self.assertEqual(raw_ratios['A'][0, 0], 0)
+                        self.assertEqual(raw_ratios['B'][0, 0], 0)
+
+    def test_singleton_virtual_references_contribute_to_bridge_scaling(self):
+        cmap = self.make_sparse_virtual_map()
+        normalizer = MADNormalizer(
+            cmap, layout='linked', virtual_reference=True,
+            quasi_intensity=True, bridge_scale=True, allow_virtual_bridge=True)
+        output = normalizer.normalize()
+        self.assertEqual([row['reference_feature_count']
+                          for row in normalizer.scaling_report], [2, 2])
+        self.assertEqual([row['median_reference_area']
+                          for row in normalizer.scaling_report], [150, 300])
+        self.assertEqual([row['plex_scale_factor']
+                          for row in normalizer.scaling_report], [1.5, 0.75])
+        self.assertTrue(all(np.isfinite(h.getIntensity()) and h.getIntensity() > 0
+                            for h in output[0].getFeatureList()
+                            if h.getIntensity() != 0))
+        self.assertTrue(all(np.isnan(h.getIntensity())
+                            for h in output[1].getFeatureList()))
+
+    def test_virtual_reference_min_channels_validation(self):
+        from msptools.cli.ConsensusXML.mad_normalizer import positive_int
+
+        parser = argparse.ArgumentParser()
+        subparsers = parser.add_subparsers()
+        cli.ConsensusXML.mad_normalizer.add_subparsers(subparsers)
+        self.assertEqual(parser.parse_args(['MADNormalizer'])
+                         .virtual_reference_min_channels, 1)
+        self.assertEqual(MADNormalizer(self.make_sparse_virtual_map())
+                         .virtual_reference_min_channels, 1)
+        for invalid in ('0', '-1', '1.5', 'many'):
+            with self.subTest(value=invalid):
+                with self.assertRaises(argparse.ArgumentTypeError):
+                    positive_int(invalid)
+        for invalid in (0, -1, 1.5, True):
+            with self.subTest(value=invalid):
+                with self.assertRaisesRegex(ValueError, 'positive integer'):
+                    MADNormalizer(self.make_sparse_virtual_map(),
+                                  virtual_reference_min_channels=invalid)
+
+    def test_virtual_reference_mean_median_and_min_int(self):
+        handles = []
+        for value in (2, 4, 10):
+            handle = BaseFeature()
+            handle.setIntensity(value)
+            handles.append(handle)
+        cmap = self.make_sparse_virtual_map()
+        self.assertEqual(MADNormalizer(cmap, virtual_reference=True,
+                         virtual_reference_min_channels=3).get_reference_intensity(
+                             'A', handles), 4)
+        self.assertAlmostEqual(MADNormalizer(cmap, virtual_reference=True,
+                               virtual_reference_method='mean',
+                               virtual_reference_min_channels=3).get_reference_intensity(
+                                   'A', handles), 16 / 3)
+        self.assertEqual(MADNormalizer(cmap, virtual_reference=True, min_int=3,
+                         virtual_reference_min_channels=3).get_reference_intensity(
+                             'A', handles), 0)
+
+    def test_cli_virtual_reference_min_channels(self):
+        args = self.create_base_args()
+        args.input_path = str(self.work_dir/'sparse-input.consensusXML')
+        args.layout = 'linked'
+        args.virtual_reference = True
+        args.quasi_intensity = True
+        ConsensusXMLFile().store(args.input_path, self.make_sparse_virtual_map())
+        cli.ConsensusXML.mad_normalizer.main(args)
+        output = ConsensusMap()
+        ConsensusXMLFile().load(args.output_path, output)
+        self.assertEqual(output[0].getMetaValue('reference_intensity::A'), 100)
 
     def test_linked_missing_and_invalid_references_are_per_plex(self):
         """ An invalid A reference leaves the valid B group usable. """

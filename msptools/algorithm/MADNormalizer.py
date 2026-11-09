@@ -65,8 +65,13 @@ class MADNormalizer():
             column_2_ref:Dict[int,int]=None, column_2_plex:Dict[int, str]=None,
             plex_2_column:Dict[str,List[int]]=None,
             quasi_intensity:bool=False, layout:str='scan', bridge_scale:bool=False,
-            allow_virtual_bridge:bool=False, scaling_report_path:str=None):
+            allow_virtual_bridge:bool=False, scaling_report_path:str=None,
+            virtual_reference_min_channels:int=1):
         """ constructor """
+        if (isinstance(virtual_reference_min_channels, bool)
+                or not isinstance(virtual_reference_min_channels, int)
+                or virtual_reference_min_channels < 1):
+            raise ValueError('virtual_reference_min_channels must be a positive integer')
         self.cmap = cmap
         # column index -> reference channel
         self.column_2_ref = column_2_ref or {}
@@ -77,6 +82,7 @@ class MADNormalizer():
         self.isobaric_type = str
         self.virtual_reference = virtual_reference
         self.virtual_reference_method = virtual_reference_method
+        self.virtual_reference_min_channels = virtual_reference_min_channels
         self.min_int = min_int
         self.quasi_intensity = quasi_intensity
         self.layout = layout
@@ -173,7 +179,7 @@ class MADNormalizer():
         if self.virtual_reference:
             values = [h.getIntensity() for h in handles
                       if np.isfinite(h.getIntensity()) and h.getIntensity() > self.min_int]
-            if len(values) <= 1:
+            if len(values) < self.virtual_reference_min_channels:
                 return 0
             return VIRTUAL_REFERENCE_AVEAGE_FUNS[self.virtual_reference_method](values)
         ref_index = self.column_2_ref[self.plex_2_columns[plex][0]]

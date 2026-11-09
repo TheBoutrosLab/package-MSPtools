@@ -10,6 +10,17 @@ from msptools.algorithm.MADNormalizer import MADNormalizer
 
 PROG_NAME = 'MADNormalizer'
 
+
+def positive_int(value:str) -> int:
+    """ Parse a positive integer for a command-line option. """
+    try:
+        number = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError('expected a positive integer') from exc
+    if number < 1:
+        raise argparse.ArgumentTypeError('expected a positive integer')
+    return number
+
 # pylint: disable=W0212
 def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
     """ parse args """
@@ -49,6 +60,11 @@ def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
         choices=['median', 'mean'],
         default='median',
         help='The method to calculate virtual reference intensity.'
+    )
+    parser.add_argument(
+        '--virtual-reference-min-channels', type=positive_int, default=1,
+        help='Minimum number of finite reporter channels above --min-int needed'
+        ' to calculate a virtual reference for a feature and plex.'
     )
     parser.add_argument(
         '--quasi-intensity',
@@ -110,6 +126,7 @@ def main(args:argparse.Namespace):
         cmap=cmap,
         virtual_reference=args.virtual_reference,
         virtual_reference_method=args.virtual_reference_method,
+        virtual_reference_min_channels=args.virtual_reference_min_channels,
         min_int=args.min_int,
         quasi_intensity=args.quasi_intensity,
         layout=args.layout,

@@ -4,6 +4,8 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-08
+
 ### Added
 
 - Normalize merged scan and linked multi-plex TMT maps, with optional per-plex median reference-area scaling and a report.
@@ -51,4 +53,5 @@ All notable changes to MSPtools are documented here.
 [1.0.1]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.0...v1.0.1
 [1.0.2]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.1...v1.0.2
 [1.0.3]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.2...v1.0.3
-[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.3...HEAD
+[1.1.0]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.3...v1.1.0
+[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.0...HEAD

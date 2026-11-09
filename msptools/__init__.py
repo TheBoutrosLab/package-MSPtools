@@ -1,7 +1,7 @@
 """ MSPtools """
 from datetime import datetime
 
-__version__ = '1.0.3'
+__version__ = '1.1.0'
 
 def logger(message:str) -> None:
     """ Print message to the stdout. """

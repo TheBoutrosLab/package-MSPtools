@@ -1,5 +1,6 @@
 """ MAD Normalizer """
 import argparse
+from pathlib import Path
 from pyopenms import ConsensusXMLFile, ConsensusMap, DataProcessing
 from msptools.cli import common
 from msptools.FileTypes import FileTypes
@@ -57,6 +58,25 @@ def add_subparsers(subparsers:argparse._SubParsersAction) -> argparse.Namespace:
         ' intensities remain zero when the reference is valid; other undefined'
         ' values produce NaN.'
     )
+    parser.add_argument(
+        '--layout', choices=['scan', 'linked'], default='scan',
+        help='Input map layout: one plex per feature (scan) or allocated channel'
+        ' areas from several plexes per feature (linked).'
+    )
+    parser.add_argument(
+        '--bridge-scale', action='store_true',
+        help='Scale linked quasi-intensities across plexes using matched'
+        ' positive reference areas.'
+    )
+    parser.add_argument(
+        '--allow-virtual-bridge', action='store_true',
+        help='Allow bridge scaling with virtual references. This assumes plexes'
+        ' have comparable overall sample composition.'
+    )
+    parser.add_argument(
+        '--scaling-report-path', type=str,
+        help='Optional path for a per-plex tab-separated scaling report.'
+    )
     parser.set_defaults(func=main)
     common.print_help_if_missing_args(parser)
     return parser
@@ -75,6 +95,13 @@ def main(args:argparse.Namespace):
     """ main """
     common.validate_input_file(args.input_path, [FileTypes.CONSENSUSXML])
     common.validate_output_file(args.output_path, [FileTypes.CONSENSUSXML])
+    if Path(args.input_path).resolve() == Path(args.output_path).resolve():
+        raise ValueError('MADNormalizer input and output paths must differ')
+    if args.scaling_report_path:
+        report_path = Path(args.scaling_report_path).resolve()
+        if report_path in (Path(args.input_path).resolve(),
+                           Path(args.output_path).resolve()):
+            raise ValueError('Scaling report path must differ from input and output paths')
 
     cmap = ConsensusMap()
     ConsensusXMLFile().load(args.input_path, cmap)
@@ -84,12 +111,26 @@ def main(args:argparse.Namespace):
         virtual_reference=args.virtual_reference,
         virtual_reference_method=args.virtual_reference_method,
         min_int=args.min_int,
-        quasi_intensity=args.quasi_intensity
+        quasi_intensity=args.quasi_intensity,
+        layout=args.layout,
+        bridge_scale=args.bridge_scale,
+        allow_virtual_bridge=args.allow_virtual_bridge,
+        scaling_report_path=args.scaling_report_path
     )
     new_cmap = normalizer.normalize()
 
     process_actions = { DataProcessing.ProcessingAction.NORMALIZATION }
-    common.add_data_processing(new_cmap, args, PROG_NAME, process_actions)
+    processing_args = argparse.Namespace(**{key: value for key, value in vars(args).items()
+                                            if value is not None})
+    common.add_data_processing(new_cmap, processing_args, PROG_NAME, process_actions)
 
     ConsensusXMLFile().store(args.output_path, new_cmap)
     print_summary(normalizer.summary)
+    for row in normalizer.scaling_report:
+        logger(f"Plex {row['plex_id']}: matched={row['matched_feature_count']}, "
+               f"median reference area={row['median_reference_area']}, "
+               f"target={row['target_reference_area']}, "
+               f"scale={row['plex_scale_factor']}")
+    for plex, map_index in normalizer.fallback_channels:
+        logger(f'Plex {plex}, map index {map_index}: zero or undefined MAD; '
+               'used median centering without variance scaling.')

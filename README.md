@@ -21,6 +21,32 @@ msptools --version
 
 Run `msptools --help` to see the available commands and their options.
 
+### Merged TMT maps
+
+`ConsensusXML MADNormalizer` accepts merged maps from multiple plexes and fractions.
+Use the default `--layout scan` when each consensus feature contains reporter handles
+from one plex. Use `--layout linked` when a linked feature contains handles from
+multiple plexes; their intensities must already be allocated MS1 areas, and
+each observed plex must have `tmt_ms1_area::<plex_id>` parent metadata. The
+normalizer uses this field as a linked-layout marker and preserves its raw
+value. Normalized areas are written to output handles, with the scaled reference
+area in `normalized_reference_intensity::<plex_id>`. The physical reference is
+selected separately in each plex from the column header whose
+`channel_description` is `reference`. Virtual references are also calculated
+separately per plex.
+
+`--quasi-intensity` converts normalized log2 ratios to areas. For linked maps,
+`--bridge-scale` additionally aligns each plex's median reference area using
+all of its positive, finite reference areas. Plexes may have different feature
+sets; their detected-feature distributions should be comparable for this scaling
+to reflect a technical difference. A physical reference should contain the same
+pooled material across plexes. With `--virtual-reference`, bridge scaling also requires
+`--allow-virtual-bridge` and assumes comparable overall sample composition
+across plexes. `--scaling-report-path` writes the per-plex factors as a TSV file;
+its path must differ from both consensusXML paths.
+Raw linked areas remain in the input map; output handle intensities contain the
+normalized values and retain their unique IDs for downstream joins.
+
 ## Develop
 
 ```bash

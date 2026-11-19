@@ -21,6 +21,35 @@ msptools --version
 
 Run `msptools --help` to see the available commands and their options.
 
+### Target/decoy FASTA databases
+
+```bash
+msptools FASTA CreateDecoyDatabase \
+  --input-path proteins.fasta \
+  --output-path search.fasta \
+  --include-crap \
+  --decoy-prefix DECOY_ \
+  --contam-prefix CONTAM_
+```
+
+Each target is followed by its decoy, generated using pyOpenMS peptide reversal
+for `--enzyme` (default: `Trypsin`). Omit `--include-crap` to exclude contaminants.
+The bundled cRAP snapshot contains 116 proteins; its source, retrieval date, and
+checksum are recorded in [the data notes](msptools/data/README.md).
+Contaminants also receive decoys. Prefixes default to `DECOY_` and `CONTAM_` and
+are prepended to the first whitespace-delimited FASTA header token, preserving
+the remaining description. For example, `sp|ALBU_BOVIN|` becomes
+`CONTAM_sp|ALBU_BOVIN|` and `DECOY_CONTAM_sp|ALBU_BOVIN|`.
+Configure downstream accession parsing and decoy detection for these prefixes.
+
+The command rejects duplicate output accessions, accessions already carrying
+the selected decoy prefix, invalid sequences, and input/output path collisions.
+It preserves an optional terminal `*` and writes uppercase sequences.
+An existing output is replaced only after successful generation. The final
+tally includes targets, contaminants, decoys, and decoys identical to their own
+target (possible for short or palindromic peptides). Different accessions with
+identical sequences are retained; sequence and peptide overlaps are not removed.
+
 ### Merged TMT maps
 
 `ConsensusXML MADNormalizer` accepts merged maps from multiple plexes and fractions.

@@ -238,6 +238,7 @@ work/
 
 # Sequence file (e.g. Reference genome)
 *.fasta
+!/msptools/data/crap.fasta
 *.fa
 *.fai
 *.dict

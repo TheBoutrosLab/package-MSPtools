@@ -4,6 +4,10 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate the package license from GPL to BSD 3-Clause and update license documentation and package metadata.
+
 ## [1.2.0] - 2026-11-19
 
 ### Added

@@ -92,4 +92,7 @@ python -m pytest test
 
 ## License
 
-Copyright (C) 2026 Sanford Burnham Prebys Medical Discovery Institute (Boutros Lab). Licensed under GPL-2.0-or-later; see [LICENSE](LICENSE).
+MSPtools is licensed under the BSD 3-Clause License (`BSD-3-Clause`).
+See [LICENSE](LICENSE) for the terms. Third-party components retain their respective licenses.
+
+Copyright (C) 2026 Sanford Burnham Prebys Medical Discovery Institute ("Boutros Lab")

@@ -4,6 +4,8 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-19
+
 ### Added
 
 - Build target/decoy protein FASTA databases with configurable prefixes, whole-protein reversal by default, optional enzyme-specific peptide reversal, and optional bundled cRAP contaminants.
@@ -65,4 +67,5 @@ All notable changes to MSPtools are documented here.
 [1.0.3]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.2...v1.0.3
 [1.1.0]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.3...v1.1.0
 [1.1.1]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.0...v1.1.1
-[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.1...HEAD
+[1.2.0]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.1...v1.2.0
+[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.2.0...HEAD

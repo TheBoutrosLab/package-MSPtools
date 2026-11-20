@@ -4,6 +4,8 @@ All notable changes to MSPtools are documented here.
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-20
+
 ### Changed
 
 - Migrate the package license from GPL to BSD 3-Clause and update license documentation and package metadata.
@@ -72,4 +74,5 @@ All notable changes to MSPtools are documented here.
 [1.1.0]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.0.3...v1.1.0
 [1.1.1]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.0...v1.1.1
 [1.2.0]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.1.1...v1.2.0
-[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.2.0...HEAD
+[1.2.1]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.2.0...v1.2.1
+[unreleased]: https://github.com/TheBoutrosLab/package-MSPtools/compare/v1.2.1...HEAD

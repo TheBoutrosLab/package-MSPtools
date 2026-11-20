@@ -24,6 +24,7 @@ def main():
     cli.ConsensusXML.parse_args(subparsers)
     cli.ProteinQuantCSV.parse_args(subparsers)
     cli.VariantPeptide.parse_args(subparsers)
+    cli.FASTA.parse_args(subparsers)
 
     # allowing values to start with -, such as -100,3
     # https://stackoverflow.com/a/21446783/11081630

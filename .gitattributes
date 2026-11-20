@@ -1,0 +1,2 @@
+# Preserve the archived FASTA bytes and checksum, including CRLF line endings.
+msptools/data/crap.fasta -text whitespace=cr-at-eol

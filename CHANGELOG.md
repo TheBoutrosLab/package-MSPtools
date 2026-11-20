@@ -6,7 +6,7 @@ All notable changes to MSPtools are documented here.
 
 ### Added
 
-- Build target/decoy protein FASTA databases with configurable prefixes, enzyme-specific reversal, and optional bundled cRAP contaminants.
+- Build target/decoy protein FASTA databases with configurable prefixes, whole-protein reversal by default, optional enzyme-specific peptide reversal, and optional bundled cRAP contaminants.
 
 ## [1.1.1] - 2026-11-08
 

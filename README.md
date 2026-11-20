@@ -32,8 +32,11 @@ msptools FASTA CreateDecoyDatabase \
   --contam-prefix CONTAM_
 ```
 
-Each target is followed by its decoy, generated using pyOpenMS peptide reversal
-for `--enzyme` (default: `Trypsin`). Omit `--include-crap` to exclude contaminants.
+Each target is followed by its decoy. Without `--enzyme`, the command uses
+pyOpenMS whole-protein reversal, preserving an initial methionine (`M`).
+Provide `--enzyme Trypsin` (or another OpenMS enzyme name) to select
+enzyme-specific peptide reversal using the same enzyme as the search.
+Omit `--include-crap` to exclude contaminants.
 The bundled cRAP snapshot contains 116 proteins; its source, retrieval date, and
 checksum are recorded in [the data notes](msptools/data/README.md).
 Contaminants also receive decoys. Prefixes default to `DECOY_` and `CONTAM_` and
